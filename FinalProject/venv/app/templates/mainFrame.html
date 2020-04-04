@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sample</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+        href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}"
+        rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
+        rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body id="page-top">
+    <style type="text/css">
+        .jumbotron {
+            background-image: url('/../static/img/bluedote.jpg');
+            background-size: cover;
+            text-shadow: black 0.2em 0.2em 0.2em;
+            color: white
+        }
+    </style>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SAMPLE</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Search
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/search_page">
+                    <i class="fas fa-search fa-sm"></i>
+                    <span>EC number</span>
+                </a>
+            </li>
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Introduction
+            </div>
+
+
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-users"></i>
+                    <span>Introduction</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/intro_page">Page Introduction</a>
+                        <a class="collapse-item" href="/developer_page">Developer</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-mail-bulk"></i>
+                    <span>Contact</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/contact_page">Inquiry</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <h1>Welcome SAMPLE</h1>
+                            </div>
+                        </div>
+                    </form>
+
+                </nav>
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1 class="text-center">EC number Predict</h1>
+                        <p class="text-center">This site predicts EC numbers by entering Sequence.</p>
+                        <p class="text-center"><a class="btn btn-primary btn-log" href="#" role="button">예측 하러 가기</a></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>웹 사이트의 특징</h4>
+                            <p>다른 사이트와는 다르게 시퀀스를 입력하면 EC number를 예측할 수 있게 도와줍니다.</p>
+                            <p><a class="btn btn-default" data-target="#modal1" data-toggle="modal">자세히 알아보기</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>개발 과정</h4>
+                            <p>개발하는데에 과정과 개발자들이 사용한 프레임워크 설명합니다.</p>
+                            <p><a class="btn btn-default" data-target="#modal2" data-toggle="modal">자세히 알아보기</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>개발자 소개</h4>
+                            <p>사용자가 쉽고 편하게 EC number를 예측할 수 있게 도와줍니다.</p>
+                            <p><a class="btn btn-default" href="/developer_page">자세히 알아보기</a></p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <footer style="background-color: #9cafd8; color: #ffffff">
+                    <div class="container">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-2" style="text-align: center;">
+                                <h5>Copyright &copy; 2020</h5>
+                                <h5>zzzz</h5>
+                            </div>
+                            <div class="col-sm-4">
+                                <h4>zzzz</h4>
+                                <p>zzzz</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center;">내비게이션</h4>
+                                <div class="list-group">
+                                    <a href="/intro_page" class="list-group-item">What EC number</a>
+                                    <a href="/developer_page" class="list-group-item">Developer</a>
+                                    <a href="/contact_page" class="list-group-item">Contact</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center;">SNS</h4>
+                                <div class="list-group">
+                                    <a href="https://www.facebook.com/profile.php?id=100004029622115" class="list-group-item">facebook</a>
+                                    <a href="#" class="list-group-item">instagram</a>
+                                    <a href="https://www.github.com/Juyeon125/Sample" class="list-group-item">github </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center" ;><span class="glyphicon glyphicon-ok"></span>&nbsp;선문대학교</h4>
+                            </div>
+                        </div>
+                </footer>
+                <!-- End of Topbar -->
+                <div class="row">
+                    <div class="modal" id="modal1" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    웹 사이트의 특징
+                                    <button class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="text-align: center;">
+                                    저희 서비스의 특징은 바로 EC number를 예측할 수 있다는 점입니다. <br>
+                                    특히 그 외에 기능으로는 이러이러한 기능이 있습니다.<br><br>
+                                    <img src="{{url_for('static', filename='img/protein.jpg')}}" style="width: 300px; height: 256px;"  alt="Pic 01" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="modal2" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    웹 사이트의 특징
+                                    <button class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="text-align: center;">
+                                    저희 서비스의 특징은 바로 EC number를 예측할 수 있다는 점입니다. <br>
+                                    특히 그 외에 기능으로는 이러이러한 기능이 있습니다.<br><br>
+                                    <img src="{{url_for('static', filename='img/DeepEC.jpg')}}" style="width: 300px; height: 256px;"  alt="Pic 02" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End of Page Wrapper -->
+
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript-->
+
+
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
+
+        <!-- Page level plugins -->
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
+
+        <!-- Page level custom scripts -->
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
+        <script
+            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
+
+</body>
+
+</html>
