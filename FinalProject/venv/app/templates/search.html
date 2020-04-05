@@ -22,14 +22,14 @@
   <!-- Custom styles for this template-->
   <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
     rel="stylesheet" type="text/css">
-    
+
 
 </head>
 
 
 
 <script>
-  
+
   function loadXMLDoc() {
     var xhttp = new XMLHttpRequest();
 
@@ -115,18 +115,17 @@
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        CONTACT
+      </div>
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="/contact_page">
           <i class="fas fa-mail-bulk"></i>
           <span>Contact</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="/contact_page">Inquiry</a>
-          </div>
-        </div>
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -183,8 +182,9 @@
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <input onKeyPress="javascript:return IsAlphaNumeric(event);"
-                               type="text" onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');" class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
+                            <input onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                              onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
+                              class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
                               placeholder="Enter sequence number..." autocomplete="off">
 
                             <script>
@@ -201,8 +201,8 @@
                                 specialKeys.push(37); //Left
                                 specialKeys.push(39); //Right
                                 var ret = ((keyCode == 13 || keyCode >= 65 && keyCode <= 78) || (keyCode >= 80 && keyCode <= 84) || (keyCode >= 86 && keyCode <= 90) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
-                                
-                                
+
+
 
 
                                 // error message
