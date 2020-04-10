@@ -37,7 +37,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-cloud-sun"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">SAMPLE</div>
             </a>
@@ -75,7 +75,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-users"></i>
                     <span>Introduction</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -92,18 +92,17 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                CONTACT
+            </div>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>About</span>
+                <a class="nav-link collapsed" href="/contact_page">
+                    <i class="fas fa-mail-bulk"></i>
+                    <span>Contact</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/contact_page">Inquiry</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -147,46 +146,55 @@
 
 
                 <!-- Begin Page Content -->
-        <div class="container-fluid">
+                <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-1 text-gray-800">Introduction this web-site</h1>
-            <br>
-            
-            <!-- Content Row -->
-            <div class="row">
-  
-              <!-- Border Left Utilities -->
-              <div class="col-lg-6">
-  
-                <div class="card mb-4 py-3 border-left-primary">
-                  <div class="card-body">
-                      <p style="font-weight: bold;">EC number의 활용</p>
-                      반 세기 전, 많은 양의 새로운 효소가 발견되었는데, 순수 생명과학, 병리학 그리고 바이오화학 산업 연구자들은 이를 활용하기 위해서 효소 명명에 대한 규칙이 필요함을 느꼈으며, 이를 해결하고자 EC 코드와 같은 효소 명명 규칙이 개발되었음. 국제 생화학 및 분자 생물학 협회 (International Union of Biochemistry and Molecular Biology)는 효소의 기능을 표기하는 효소번호(enzyme commission number)를 지정함. 이를 통해 효소 활용분야 혹은 효소 연구를 다루는 간행물 등에서  모호하고 불명확한 효소 이름에서 비롯되는 문제점들을 해결 할 수 있었음 
-                  </div>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-1 text-gray-800">Introduction this web-site</h1>
+                    <br>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Border Left Utilities -->
+                        <div class="col-lg-6">
+
+                            <div class="card mb-4 py-3 border-left-primary">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;">EC number의 활용</p>
+                                    반 세기 전, 많은 양의 새로운 효소가 발견되었는데, 순수 생명과학, 병리학 그리고 바이오화학 산업 연구자들은 이를 활용하기 위해서 효소 명명에 대한
+                                    규칙이 필요함을 느꼈으며, 이를 해결하고자 EC 코드와 같은 효소 명명 규칙이 개발되었음. 국제 생화학 및 분자 생물학 협회 (International
+                                    Union of Biochemistry and Molecular Biology)는 효소의 기능을 표기하는 효소번호(enzyme commission
+                                    number)를 지정함. 이를 통해 효소 활용분야 혹은 효소 연구를 다루는 간행물 등에서 모호하고 불명확한 효소 이름에서 비롯되는 문제점들을 해결 할
+                                    수 있었음
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 py-3 border-left-success">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;">EC number 예측의 필요성</p>
+                                    효소가 어떤 종류의 생화학반응을 매개하는지 알 수 있는 효소번호는 다양한 분야에서 널리 활용되고 있음. 현재 EC번호를 예측하는 컴퓨터 방법론들이
+                                    10개 이상 개발되었으며, 그 중에서도 DeepEC는 예측 속도, 정확성, 예측 가능 범위 측면에서 뛰어난 성과를 보여주고 있음. 하지만 실전에서
+                                    효소번호를 필요로 하는 연구자들이 DeepEC를 사용하는 방법은 쉽지 않음. 그 이유는 DeepEC를 사용하기 위해서는 리눅스 환경에서 설치하여
+                                    사용해야하지만 리눅스를 다룰 수 있는 연구자들이 많이 없기 때문임. 그렇기 때문에 현재 많은 연구자들은 아미노산 서열을 통해 Swiss-Prot(단백질
+                                    시퀀스 데이터베이스)의 유사한 단백질 서열을 정렬하고, 각각의 서열에 대한 정보 중 효소번호를 직접 찾아내어 추측하는 방법을 사용함. 이 방법은 많은
+                                    단백질 서열의 효소번호를 필요로 할 경우 많은 시간이 소요되기 때문에 번거롭다는 단점이 있음.
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 py-3 border-left-info">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;">추가 내용</p>
+                                    설명...
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
                 </div>
-  
-                <div class="card mb-4 py-3 border-left-success">
-                  <div class="card-body">
-                    <p style="font-weight: bold;">EC number 예측의 필요성</p>
-                    효소가 어떤 종류의 생화학반응을 매개하는지 알 수 있는 효소번호는 다양한 분야에서 널리 활용되고 있음. 현재 EC번호를 예측하는 컴퓨터 방법론들이 10개 이상 개발되었으며, 그 중에서도 DeepEC는 예측 속도, 정확성, 예측 가능 범위 측면에서 뛰어난 성과를 보여주고 있음. 하지만 실전에서 효소번호를 필요로 하는 연구자들이 DeepEC를 사용하는 방법은 쉽지 않음. 그 이유는 DeepEC를 사용하기 위해서는 리눅스 환경에서 설치하여 사용해야하지만 리눅스를 다룰 수 있는 연구자들이 많이 없기 때문임. 그렇기 때문에 현재 많은 연구자들은 아미노산 서열을 통해 Swiss-Prot(단백질 시퀀스 데이터베이스)의 유사한 단백질 서열을 정렬하고, 각각의 서열에 대한 정보 중 효소번호를 직접 찾아내어 추측하는 방법을 사용함. 이 방법은 많은 단백질 서열의 효소번호를 필요로 할 경우 많은 시간이 소요되기 때문에 번거롭다는 단점이 있음.
-                  </div>
-                </div>
-  
-                <div class="card mb-4 py-3 border-left-info">
-                  <div class="card-body">
-                    <p style="font-weight: bold;">추가 내용</p>
-                    설명...
-                  </div>
-                </div>
-  
-              </div>
-  
-  
-            </div>
-  
-          </div>
-          <!-- /.container-fluid -->
+                <!-- /.container-fluid -->
 
 
 
