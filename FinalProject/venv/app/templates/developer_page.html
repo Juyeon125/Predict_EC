@@ -82,7 +82,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/intro_page">Page Introduction</a>
+                        <a class="collapse-item" href="/intro_page">EC number</a>
                         <a class="collapse-item" href="/developer_page">Developer</a>
                     </div>
                 </div>
@@ -145,51 +145,37 @@
 
 
                 <!-- Three -->
-                <section id="three" class="wrapper align-center">
-
-                    <div class="inner">
-                        <div class="flex flex-2">
-                            <article>
-                                <div class="image round">
-                                    <img src="{{url_for('static', filename='img/juyeon_img.png')}}" alt="Pic 01" />
-                                </div>
-                                <header>
-                                    <h3>Juyeon Park</h3>
-                                </header>
-                                <p>이름 : 박주연<br />나이 :23<br />입학년도 : 2017년</p>
-                            </article>
-                            <article>
-                                <div class="image round">
-                                    <img src="{{url_for('static', filename='img/kyungmin_img.png')}}" alt="Pic 02" />
-                                </div>
-                                <header>
-                                    <h3>Kyungmin Jung</h3>
-                                </header>
-                                <p>이름 : 정경민<br />나이 :27<br />입학년도 : 2013년</p>
-                            </article>
-                            <article>
-                                <div class="image round">
-                                    <img src="{{url_for('static', filename='img/minsu_img.png')}}" alt="Pic 03" />
-
-                                </div>
-                                <header>
-                                    <h3>Minsu Lee</h3>
-                                </header>
-                                <p>이름 : 이민수<br />나이 :25<br />입학년도 : 2015년</p>
-                            </article>
-                            <article>
-                                <div class="image round">
-                                    <img src="{{url_for('static', filename='img/seungchul_img.png')}}" alt="Pic 04" />
-
-                                </div>
-                                <header>
-                                    <h3>Seungcul Kim</h3>
-                                </header>
-                                <p>이름 : 김승철<br />나이 :26<br />입학년도 : 2014년</p>
-                            </article>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    
+                        <img src="{{url_for('static', filename='img/juyeon_img2.png')}}" alt="Pic 01" style="width:195px;height:220px;" />
+ 
+                        <p>name : Juyeon Park<br />age :23<br />class of : 2017</p>
+                     
                     </div>
-                </section>
+                    <div class="col-md-6">
+                        <img src="{{url_for('static', filename='img/juyeon_img.png')}}" alt="Pic 01" />
+
+                        <p>name : Minsu Lee<br />age :25<br />class of : 2015</p>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    
+                        <img src="{{url_for('static', filename='img/juyeon_img.png')}}" alt="Pic 01" />
+
+                        <p>name : Seungcul Kim<br />age :26<br />class of : 2014</p>
+                     
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{url_for('static', filename='img/juyeon_img.png')}}" alt="Pic 01" />
+                        
+                        <p>name : Kyungmin Jung<br />age :27<br />class of : 2013</p>
+                    </div>
+                    
+                </div>
+                
             </div>
         </div>
         <!-- End of Page Wrapper -->

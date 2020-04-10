@@ -104,7 +104,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="/intro_page">Page Introduction</a>
+            <a class="collapse-item" href="/intro_page">EC number</a>
             <a class="collapse-item" href="/developer_page">Developer</a>
           </div>
         </div>
@@ -182,10 +182,11 @@
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <input onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                            <textarea onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
                               onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
                               class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                              placeholder="Enter sequence" autocomplete="off">
+                              placeholder="Enter sequence..." autocomplete="off"></textarea>
+
 
                             <script>
 

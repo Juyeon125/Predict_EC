@@ -90,7 +90,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/intro_page">What EC number</a>
+                        <a class="collapse-item" href="/intro_page">EC number</a>
                         <a class="collapse-item" href="/developer_page">Developer</a>
                     </div>
                 </div>
@@ -101,8 +101,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-              <!-- Heading -->
-              <div class="sidebar-heading">
+            <!-- Heading -->
+            <div class="sidebar-heading">
                 CONTACT
             </div>
 
@@ -151,42 +151,96 @@
                     <div class="jumbotron">
                         <h1 class="text-center">EC number Predict</h1>
                         <p class="text-center">This site predicts EC numbers by entering Sequence.</p>
-                        <p class="text-center"><a class="btn btn-primary btn-log" href="/search_page" role="button">Go Predict</a></p>
+                        <p class="text-center"><a class="btn btn-primary btn-log" href="/search_page" role="button">Go
+                                Predict</a></p>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>What is the EC number?</h4>
-                            <p>시퀀스를 입력하면 즉시 EC number를 예측할 수 있게 도와줍니다.</p>
-                            <p><a class="btn btn-primary" data-target="#modal1" data-toggle="modal" style="color:#ffffff">See More</a></p>
+                            <h4>Introducing the website</h4>
+                            <p>Entering a sequence helps you<br>
+                                 predict the EC number.</p>
+                            <p><a class="btn btn-primary" data-target="#modal1" data-toggle="modal"
+                                    style="color:#ffffff">See More</a></p>
                         </div>
                         <div class="col-md-4">
                             <h4>How do you predict?</h4>
-                            <p>개발하는데에 과정과 개발자들이 사용한 프레임워크 설명합니다.</p>
-                            <p><a class="btn btn-primary" data-target="#modal2" data-toggle="modal" style="color:#ffffff">See More</a></p>
+                            <p>Let me tell you how we use to predict<br> EC numbers.</p>
+                            <p><a class="btn btn-primary" data-target="#modal2" data-toggle="modal"
+                                    style="color:#ffffff">See More</a></p>
                         </div>
                         <div class="col-md-4">
                             <h4>Developer</h4>
-                            <p>사용자가 쉽고 편하게 EC number를 예측할 수 있게 도와줍니다.</p>
+                            <p>This is a page that introduces the four developers who created this website.</p>
+                            
                             <p><a class="btn btn-primary" href="/developer_page">See More</a></p>
                         </div>
                     </div>
                     <hr>
                 </div>
+                <footer style="background-color: #9cafd8; color: #ffffff">
+                    <div class="container">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-2" style="text-align: center;">
+                                <h4 style="font-size: 1.2em;">Copyright &copy; 2020</h4>
+
+                                <h5 style="font-size:0.8em">team SAMPLE</h5>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center; font-size:1.2em;">NAVIGATION</h4>
+                                <div class="list-group">
+                                    <a href="/intro_page" class="list-group-item" style="font-size:0.8em">What EC
+                                        number</a>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center; font-size:1.2em;">　</h4>
+                                <div class="list-group">
+
+                                    <a href="/developer_page" class="list-group-item"
+                                        style="font-size:0.8em">Developer</a>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center; font-size:1.2em;">　</h4>
+                                <div class="list-group">
+
+                                    <a href="/contact_page" class="list-group-item" style="font-size:0.8em">Contact</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center; font-size:1.2em;">SOURCE</h4>
+                                <div class="list-group">
+
+                                    <a href="https://www.github.com/Juyeon125/Sample" class="list-group-item"
+                                        style="font-size:0.8em">github </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="text-align: center; font-size:1.2em;" ;><span
+                                        class="glyphicon glyphicon-ok"></span>&nbsp;SUNMOON University</h4>
+                            </div>
+                        </div>
+                </footer>
                 <!-- End of Topbar -->
                 <div class="row">
                     <div class="modal" id="modal1" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    웹 사이트의 특징
+                                    Introducing the website
                                     <button class="close" data-dismiss="modal">
                                         &times;
                                     </button>
                                 </div>
                                 <div class="modal-body" style="text-align: center;">
-                                    저희 서비스의 특징은 바로 EC number를 예측할 수 있다는 점입니다. <br>
-                                    특히 그 외에 기능으로는 이러이러한 기능이 있습니다.<br><br>
-                                    <img src="{{url_for('static', filename='img/protein.jpg')}}" style="width: 300px; height: 256px;"  alt="Pic 01" />
+                                    If you are looking for an ec number, you can enter a sequence.<br>
+                                    Also provide information on the ec number you are looking for.<br><br>
+                                    <img src="{{url_for('static', filename='img/protein.jpg')}}"
+                                        style="width: 300px; height: 256px;" alt="Pic 01" />
                                 </div>
                             </div>
                         </div>
@@ -195,15 +249,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    웹 사이트의 특징
+                                    How do you predict?
                                     <button class="close" data-dismiss="modal">
                                         &times;
                                     </button>
                                 </div>
                                 <div class="modal-body" style="text-align: center;">
-                                    저희 서비스의 특징은 바로 EC number를 예측할 수 있다는 점입니다. <br>
-                                    특히 그 외에 기능으로는 이러이러한 기능이 있습니다.<br><br>
-                                    <img src="{{url_for('static', filename='img/DeepEC.jpg')}}" style="width: 300px; height: 256px;"  alt="Pic 02" />
+                                    Use deep learning to learn the existing sequence.<br> Then use the learned data to output the expected results.
+                                    <img src="{{url_for('static', filename='img/DeepEC.jpg')}}"
+                                        style="width: 300px; height: 256px;" alt="Pic 02" />
                                 </div>
                             </div>
                         </div>
