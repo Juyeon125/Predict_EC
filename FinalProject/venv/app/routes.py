@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+import mysql_dao
 
  
 app = Flask(__name__)      
@@ -24,6 +24,16 @@ def developer_page():
 def contact_page():
   return render_template('contact_page.html')
 
+
+@app.route("/searchEc", methods=['GET', 'POST'])
+def loginProc():
+    if request.method == "POST":
+        resSeq = request.form["seq"]
+        content = mysql_dao.get_dbSelect(resSeq)
+        print(content)
+        return content
+ 
+  
 
 if __name__ == '__main__':
   app.debug = True

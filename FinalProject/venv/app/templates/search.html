@@ -26,11 +26,11 @@
 
 </head>
 
-
-
+<!-- 이 부분이 Db값을 요청하는 함수 -->
 <script>
 
   function loadXMLDoc() {
+    
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
@@ -40,14 +40,13 @@
         console.log(ecNumber);
       }
     };
+
     var parameter = 'seq=' + document.getElementById("seqNumber").value;
     console.log(parameter);
     xhttp.open("post", "/searchEc", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(parameter);
   }
-
-
 </script>
 
 <body id="page-top">
