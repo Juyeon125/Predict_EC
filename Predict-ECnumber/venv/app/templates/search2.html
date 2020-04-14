@@ -30,7 +30,7 @@
 <script>
 
   function loadXMLDoc() {
-
+    
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
@@ -57,90 +57,91 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-cloud-sun"></i>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SAMPLE</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Search
         </div>
-        <div class="sidebar-brand-text mx-3">SAMPLE</div>
-      </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+         <!-- Nav Item - Utilities Collapse Menu -->
+         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-search fa-sm"></i>
+                <span>EC number</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/search_page">EC number</a>
+                    <a class="collapse-item" href="/search2_page">EC information</a>
+                </div>
+            </div>
+        </li>
+    
+        
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Search
-      </div>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-search fa-sm"></i>
-          <span>EC number</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="/search_page">EC number</a>
-            <a class="collapse-item" href="/search2_page">EC information</a>
-          </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Introduction
         </div>
-      </li>
 
 
 
+           <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+            <a class="nav-link collapsed" href="/intro_page">
+                <i class="fas fa-folder-open fa-sm"></i>
+                <span>Introduction</span>
+            </a>
+        </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/developer_page">
+                    <i class="fas fa-users"></i>
+                    <span>Developer</span>
+                </a>
+            </li>
 
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Introduction
-      </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            CONTACT
+        </div>
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/contact_page">
+                <i class="fas fa-mail-bulk"></i>
+                <span>Contact</span>
+            </a>
+        </li>
 
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/intro_page">
-          <i class="fas fa-folder-open fa-sm"></i>
-          <span>Introduction</span>
-        </a>
-      </li>
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/developer_page">
-          <i class="fas fa-users"></i>
-          <span>Developer</span>
-        </a>
-      </li>
-
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        CONTACT
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/contact_page">
-          <i class="fas fa-mail-bulk"></i>
-          <span>Contact</span>
-        </a>
-      </li>
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -162,8 +163,8 @@
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <div class="input-group-append">
-                <h1>Search EC number</h1>
+              <div class="input-group-append"></div>
+                <h1>Search EC Information</h1>
               </div>
             </div>
           </form>
@@ -181,53 +182,28 @@
                 <div class="card-body p-0">
                   <!-- Nested Row within Card Body -->
                   <div class="row">
-                    <div><img src="{{url_for('static', filename='img/enzyme_img.jpg')}}" width="455" height="460"></div>
+                    <div><img src="{{url_for('static', filename='img/protein.jpg')}}" width="455" height="460"></div>
                     <div class="col-lg-6">
                       <div class="p-5">
                         <div class="text-center">
-                          <p class="mb-4"><br></p>
-                          <h1 class="h4 text-gray-900 mb-2">Search EC number</h1>
-                          <p class="mb-4"><br></p>
+                       
+                          <h1 class="h4 text-gray-900 mb-2">Search EC number Information</h1>
+                      
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
                             <textarea onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
                               onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
                               class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                              placeholder="Enter sequence..." autocomplete="off"></textarea>
+                              placeholder="Enter EC number..." autocomplete="off"></textarea>
 
-
-                            <script>
-
-                              function IsAlphaNumeric(ee) {
-                                var keyCode = ee.keyCode == 0 ? ee.charCode : ee.keyCode;
-                                // 예외키 규정
-                                var specialKeys = new Array();
-                                specialKeys.push(8); //Backspace
-                                specialKeys.push(9); //Tabs
-                                specialKeys.push(46); //Delete
-                                specialKeys.push(36); //Home
-                                specialKeys.push(35); //End   
-                                specialKeys.push(37); //Left
-                                specialKeys.push(39); //Right
-                                var ret = ((keyCode == 13 || keyCode >= 65 && keyCode <= 78) || (keyCode >= 80 && keyCode <= 84) || (keyCode >= 86 && keyCode <= 90) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
-
-
-
-
-                                // error message
-                                if (!ret) { alert("only alphanumeric can be allowed to input."); }
-                                return ret;
-                              }
-
-                            </script>
                             <br>
-                            <input type="text" class="form-control form-control-user" id="resultEc" value=""
-                              placeholder="Show EC number!" disabled>
+                            <input type="text" style="width:345px;height:200px;"class="form-control form-control-user" id="resultEc" value=""
+                              placeholder="Show" disabled>
                             <br>
                           </div>
                           <button class="btn btn-secondary" type="button" onclick="loadXMLDoc()">Search EC
-                            number</button>
+                            Information</button>
                         </form>
                         <hr>
                       </div>
@@ -248,25 +224,7 @@
         <i class="fas fa-angle-up"></i>
       </a>
 
-      <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+   
 
 
       <!-- Bootstrap core JavaScript-->

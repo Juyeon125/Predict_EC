@@ -12,6 +12,10 @@ def index():
 def search_page():
   return render_template('search.html')
 
+@app.route('/search2_page')
+def search2_page():
+  return render_template('search2.html')
+
 @app.route('/intro_page')
 def intro_page():
   return render_template('intro_page.html')

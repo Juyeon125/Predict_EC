@@ -60,13 +60,23 @@
                 Search
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/search_page">
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-search fa-sm"></i>
                     <span>EC number</span>
                 </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/search_page">EC number</a>
+                        <a class="collapse-item" href="/search2_page">EC information</a>
+                    </div>
+                </div>
             </li>
+        
+            
 
 
 
@@ -80,22 +90,20 @@
 
 
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-users"></i>
+               <!-- Nav Item - Pages Collapse Menu -->
+               <li class="nav-item">
+                <a class="nav-link collapsed" href="/intro_page">
+                    <i class="fas fa-folder-open fa-sm"></i>
                     <span>Introduction</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/intro_page">EC number</a>
-                        <a class="collapse-item" href="/developer_page">Developer</a>
-                    </div>
-                </div>
             </li>
-
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/developer_page">
+                        <i class="fas fa-users"></i>
+                        <span>Developer</span>
+                    </a>
+                </li>
 
 
             <!-- Divider -->
