@@ -14,18 +14,18 @@
     <!-- Custom fonts for this template-->
 
 
-    <link href="{{url_for('static', filename='html5up-prologue/assets/css/main.css')}}" rel="stylesheet"
+    <link href="{{url_for('static', filename='css/main2.css')}}" rel="stylesheet"
         type="text/css">
 
     <link
-        href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}"
+        href="{{url_for('static', filename='css/all.min.css')}}"
         rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
+    <link href="{{url_for('static', filename='css/sb-admin-2.min.css')}}"
         rel="stylesheet" type="text/css">
 
 
@@ -60,24 +60,20 @@
                 Search
             </div>
 
-             <!-- Nav Item - Utilities Collapse Menu -->
-             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ecMenuBar"
+                    aria-expanded="true" aria-controls="ecMenuBar">
                     <i class="fas fa-search fa-sm"></i>
                     <span>EC number</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="ecMenuBar" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/search_page">EC number</a>
-                        <a class="collapse-item" href="/search2_page">EC information</a>
+                        <a class="collapse-item" href="/ecFunction_page">EC function</a>
                     </div>
                 </div>
             </li>
-        
-            
-
 
 
             <!-- Divider -->
@@ -88,22 +84,21 @@
                 Introduction
             </div>
 
-
-
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                <a class="nav-link collapsed" href="/intro_page">
-                    <i class="fas fa-folder-open fa-sm"></i>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-users"></i>
                     <span>Introduction</span>
                 </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/intro_page">Page Introduction</a>
+                        <a class="collapse-item" href="/developer_page">Developer</a>
+                    </div>
+                </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/developer_page">
-                        <i class="fas fa-users"></i>
-                        <span>Developer</span>
-                    </a>
-                </li>
 
 
             <!-- Divider -->
@@ -230,27 +225,27 @@
 
 
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+            src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+            src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
         <!-- Core plugin JavaScript-->
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+            src="{{url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
         <!-- Custom scripts for all pages-->
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
+            src="{{url_for('static', filename='js/sb-admin-2.min.js')}}"></script>
 
         <!-- Page level plugins -->
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
+            src="{{url_for('static', filename='vendor/chart.js/Chart.min.js')}}"></script>
 
         <!-- Page level custom scripts -->
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
+            src="{{url_for('static', filename='js/demo/chart-area-demo.js')}}"></script>
         <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
+            src="{{url_for('static', filename='js/demo/chart-pie-demo.js')}}"></script>
 
 </body>
 

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import mysql_dao
+import json
 
  
 app = Flask(__name__)      
@@ -11,10 +12,6 @@ def index():
 @app.route('/search_page')
 def search_page():
   return render_template('search.html')
-
-@app.route('/search2_page')
-def search2_page():
-  return render_template('search2.html')
 
 @app.route('/intro_page')
 def intro_page():
@@ -28,14 +25,36 @@ def developer_page():
 def contact_page():
   return render_template('contact_page.html')
 
+@app.route('/ecFunction_page')
+def ecFunction_page():
+  content = mysql_dao.get_tableSelect()
+  return render_template('ec_function.html', content=content)
+  
 
 @app.route("/searchEc", methods=['GET', 'POST'])
 def loginProc():
     if request.method == "POST":
-        resSeq = request.form["seq"]
+        #밑에 코드는 사용자가 입력한 시퀀스 값
+        #resSeq = request.form["seq"]
+
+
+        # ------ Model -----------
+        ##############
+        ############
+        ##########
+        #######
+        # ------ Model -----------
+
+      f = open("static/ecnumResult.txt", 'r')
+      lines = f.readlines()
+      for line in lines:
+        resSeq=line
+        f.close()
         content = mysql_dao.get_dbSelect(resSeq)
-        print(content)
+        #print(content[0].scnumber)
+        #print(json_string,"server")
         return content
+    #return render_template("index.html")
  
   
 
