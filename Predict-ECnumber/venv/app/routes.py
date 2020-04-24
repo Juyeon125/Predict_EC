@@ -25,11 +25,26 @@ def developer_page():
 def contact_page():
   return render_template('contact_page.html')
 
+@app.route('/register_page')
+def register_page():
+  return render_template('register_page.html')
+
+@app.route('/login_page')
+def login_page():
+  return render_template('login_page.html')
+
+@app.route('/forgot_password_page')
+def forgot_password_page():
+  return render_template('forgot_password_page.html')
+
 @app.route('/ecFunction_page')
 def ecFunction_page():
   content = mysql_dao.get_tableSelect()
   return render_template('ec_function.html', content=content)
-  
+
+@app.route('/index')
+def index_page():
+  return render_template('index.html') 
 
 @app.route("/searchEc", methods=['GET', 'POST'])
 def loginProc():
