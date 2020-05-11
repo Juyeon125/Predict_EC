@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import mysql_dao
 import json
-
  
 app = Flask(__name__)      
- 
+
+
 @app.route('/')
 def index():
   return render_template('mainFrame.html')
@@ -70,7 +70,14 @@ def loginProc():
         #print(json_string,"server")
         return content
     #return render_template("index.html")
- 
+
+@app.route("/login_route", methods=['GET', 'POST'])
+def login_route():
+    if request.method == "POST":
+      reqid = request.form["id"]
+      reqpw = request.form["pw"]
+      content = mysql_dao.get_dbSelect_login(reqid,reqpw)
+    return content
   
 
 if __name__ == '__main__':

@@ -13,14 +13,14 @@
 
   <!-- Custom fonts for this template-->
   <link
-    href="{{url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}"
+    href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}"
     rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="{{url_for('static', filename='css/sb-admin-2.min.css')}}"
+  <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
     rel="stylesheet" type="text/css">
 
 
@@ -35,7 +35,7 @@
         var ecNumber = this.responseText;
 
         if (ecNumber == "fail") {
-          alert("응 너 값 없어^^");
+          alert("다시");
         }
         else {
           //console.log(ecNumber);
@@ -43,12 +43,12 @@
           //console.log(obj.ec_num + "web");
           //console.log(obj.accepted_name + "web");
           //console.log(obj.reaction + "web");
-          txt = '';
-          txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec_num + '</h4><hr>'
-          txt += '<p>Accepted Name : ' + obj.accepted_name + '<br>'
-          txt += '<p>Reaction : ' + obj.reaction + '<br>'
-          txt += '</p>'
-          document.getElementById("function_result").innerHTML = txt;
+            txt = '';
+						txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec_num + '</h4><hr>'
+						txt += '<p>Accepted Name : ' + obj.accepted_name + '<br>'
+            txt += '<p>Reaction : ' + obj.reaction + '<br>'
+						txt += '</p>'
+						document.getElementById("function_result").innerHTML = txt;
         }
         //document.getElementById("resultEc").value = ecNumber;
       }
@@ -191,7 +191,7 @@
                   <!-- Nested Row within Card Body -->
                   <div class="row">
 
-
+                    
 
                     <div class="col-lg-6">
                       <div class="p-5">
@@ -202,7 +202,7 @@
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <textarea style="text-transform: uppercase;" onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                            <textarea onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
                               onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
                               class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
                               placeholder="Enter sequence..." autocomplete="off"></textarea>
@@ -220,13 +220,13 @@
                                 specialKeys.push(35); //End   
                                 specialKeys.push(37); //Left
                                 specialKeys.push(39); //Right
-                                var ret = ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
+                                var ret = ((keyCode == 13 || keyCode >= 65 && keyCode <= 78) || (keyCode >= 80 && keyCode <= 84) || (keyCode >= 86 && keyCode <= 90) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
 
 
 
 
                                 // error message
-                                if (!ret) { alert("only alphabet can be allowed to input."); }
+                                if (!ret) { alert("only alphanumeric can be allowed to input."); }
                                 return ret;
                               }
 
@@ -287,16 +287,16 @@
 
 
       <script
-        src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
       <script
-        src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
       <!-- Core plugin JavaScript-->
       <script
-        src="{{url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
       <!-- Custom scripts for all pages-->
-      <script src="{{url_for('static', filename='js/sb-admin-2.min.js')}}"></script>
+      <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
 
       <!-- Page level plugins
       <script
