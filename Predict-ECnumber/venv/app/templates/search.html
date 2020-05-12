@@ -202,11 +202,11 @@
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <textarea onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
-                              onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
-                              class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                              placeholder="Enter sequence..." autocomplete="off"></textarea>
-
+                            <textarea style="text-transform: uppercase;" onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                            onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
+                            class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
+                            placeholder="Enter sequence..." autocomplete="off"></textarea>
+                            
                             <script>
 
                               function IsAlphaNumeric(ee) {
@@ -220,13 +220,13 @@
                                 specialKeys.push(35); //End   
                                 specialKeys.push(37); //Left
                                 specialKeys.push(39); //Right
-                                var ret = ((keyCode == 13 || keyCode >= 65 && keyCode <= 78) || (keyCode >= 80 && keyCode <= 84) || (keyCode >= 86 && keyCode <= 90) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
+                                var ret = ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
 
 
 
 
                                 // error message
-                                if (!ret) { alert("only alphanumeric can be allowed to input."); }
+                                if (!ret) { alert("only alphabet can be allowed to input."); }
                                 return ret;
                               }
 
