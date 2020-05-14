@@ -38,11 +38,8 @@
           alert("Check Email");
         }
         else {
-          const obj = JSON.parse(member);
-          console.log(obj.email);
-          console.log(obj.pw);
-          console.log(obj.first);
-          console.log(obj.last);
+          //const obj = JSON.parse(member);
+          location.href = document.referrer; // 부모창 이동(로그인 전 페이지)
         }
       }
     };
@@ -81,7 +78,7 @@
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" autocomplete="off" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">

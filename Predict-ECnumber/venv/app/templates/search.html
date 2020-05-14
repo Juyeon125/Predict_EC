@@ -177,6 +177,66 @@
             </div>
           </form>
 
+
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Alerts -->
+            
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            {% if(loginId==''): %}
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">LOGIN</span>
+                  
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="login_page">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Login
+                  </a>
+                  <a class="dropdown-item" href="forgot_password_page">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Forgot Password
+                  </a>
+                  <a class="dropdown-item" href="register_page">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Register
+                  </a>
+                
+                </div>
+              </li>
+            {% else: %}
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
+                  
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="login_page">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Login
+                  </a>
+                  <a class="dropdown-item" href="forgot_password_page">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Forgot Password
+                  </a>
+                  <a class="dropdown-item" href="register_page">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Register
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            {% endif %}
+          </ul>
+
         </nav>
         <!-- End of Topbar -->
 
@@ -190,9 +250,6 @@
                 <div class="card-body p-0">
                   <!-- Nested Row within Card Body -->
                   <div class="row">
-
-                    
-
                     <div class="col-lg-6">
                       <div class="p-5">
                         <div class="text-center">
@@ -202,11 +259,11 @@
                         </div>
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <textarea style="text-transform: uppercase;" onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
-                            onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
-                            class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                            placeholder="Enter sequence..." autocomplete="off"></textarea>
-                            
+                            <textarea onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                              onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
+                              class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
+                              placeholder="Enter sequence..." autocomplete="off"></textarea>
+
                             <script>
 
                               function IsAlphaNumeric(ee) {
@@ -220,13 +277,10 @@
                                 specialKeys.push(35); //End   
                                 specialKeys.push(37); //Left
                                 specialKeys.push(39); //Right
-                                var ret = ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
-
-
-
+                                var ret = ((keyCode == 13 || keyCode >= 65 && keyCode <= 78) || (keyCode >= 80 && keyCode <= 84) || (keyCode >= 86 && keyCode <= 90) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
 
                                 // error message
-                                if (!ret) { alert("only alphabet can be allowed to input."); }
+                                if (!ret) { alert("only alphanumeric can be allowed to input."); }
                                 return ret;
                               }
 
@@ -262,25 +316,26 @@
         <i class="fas fa-angle-up"></i>
       </a>
 
-      <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-          </div>
+            </button>
         </div>
-      </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout?url=/search_page">Logout</a>
+        </div>
+    </div>
+</div>
+</div>
+
 
 
       <!-- Bootstrap core JavaScript-->
