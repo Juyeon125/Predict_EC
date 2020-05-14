@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Register</title>
+  <title>Sample</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,6 +19,36 @@
   <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 </head>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  function registerGO() {
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var member = this.responseText;
+
+        if (member == "fail") {
+          alert("You are already a member.");
+        }
+        else {
+          location.href = 'login_page'
+        }
+      }
+    };
+    
+    var parameter = 'id=' + document.getElementById("exampleInputEmail").value + '&pw=' + document.getElementById("exampleInputPassword").value + '&first=' + document.getElementById("exampleFirstName").value + '&last=' + document.getElementById("exampleLastName").value;
+    console.log(parameter);//입력 값 콘솔에 출력
+    xhttp.open("post", "/register_route", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(parameter);//입력 값 서버에 전송
+  }
+</script>
+
 
 
 
@@ -40,14 +70,14 @@
               <form class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                    <input type="text" class="form-control form-control-user" autocomplete="off" id="exampleFirstName" placeholder="First Name">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-user" autocomplete="off" id="exampleLastName" placeholder="Last Name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                  <input type="email" class="form-control form-control-user" autocomplete="off" id="exampleInputEmail" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -57,7 +87,7 @@
                     <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
                   </div>
                 </div>
-                <a href="login_page" class="btn btn-primary btn-user btn-block">
+                <a class="btn btn-primary btn-user btn-block"  onclick="registerGO()">
                   Register Account
                 </a>
               </form>

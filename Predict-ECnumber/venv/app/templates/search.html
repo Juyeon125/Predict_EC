@@ -38,11 +38,7 @@
           alert("다시");
         }
         else {
-          //console.log(ecNumber);
           const obj = JSON.parse(ecNumber);
-          //console.log(obj.ec_num + "web");
-          //console.log(obj.accepted_name + "web");
-          //console.log(obj.reaction + "web");
             txt = '';
 						txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec_num + '</h4><hr>'
 						txt += '<p>Accepted Name : ' + obj.accepted_name + '<br>'
@@ -50,7 +46,6 @@
 						txt += '</p>'
 						document.getElementById("function_result").innerHTML = txt;
         }
-        //document.getElementById("resultEc").value = ecNumber;
       }
     };
     var parameter = 'seq=' + document.getElementById("seqNumber").value;
@@ -204,7 +199,6 @@
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Register
                   </a>
-                
                 </div>
               </li>
             {% else: %}
@@ -215,17 +209,9 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="login_page">
+                  <a class="dropdown-item" href="mypage">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Login
-                  </a>
-                  <a class="dropdown-item" href="forgot_password_page">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Forgot Password
-                  </a>
-                  <a class="dropdown-item" href="register_page">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Register
+                    Mypage
                   </a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -290,15 +276,18 @@
                               placeholder="Show EC number!" disabled>
                             <br>
 
+                            
                           </div>
-                          <button class="btn btn-secondary" type="button" onclick="loadXMLDoc()">Search EC
-                            number</button>
+                          <button class="btn btn-secondary" type="button" onclick="loadXMLDoc()">Search EC number</button>
                         </form>
                         <hr>
                       </div>
                     </div>
 
-                    <div class="col-lg-6" id="function_result" style="padding: 50px;"></div>
+                    <div class="col-lg-6" id="function_result" style="padding: 50px;">
+                    
+                    
+                    </div>
 
                   </div>
                 </div>

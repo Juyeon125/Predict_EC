@@ -74,21 +74,19 @@ def get_dbInsert_register(email, pw, first, last):
     conn = connection.connection()
 
     try:
-        sql = "INSERT INTO member[email, pw, first, last] VALUES (email, pw, first, last);"
         cursor = conn.cursor()
-        cursor.execute(sql)
-        row_num = cursor.rowcount
+        sql = "INSERT INTO member (email, pw, first, last) VALUES (%s, %s, %s, %s);"
+        val = ("a","a","a","a")
+        cursor.execute(sql,val)
+
+        conn.commit()
+
+        print(cursor.rowcount,"되냐")
         
     finally:
         cursor.close()
 
-    if row_num > 0:
-        row = cursor.fetchall()
-        for row_data in row :
-            json_object = {
-                "email": row_data[0]
-            }
-        print(json_object)
-        return json_object
+    #if회원가입 중복이면 fail
+    #else Insert와 true
 
     return "fail"

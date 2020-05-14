@@ -12,11 +12,6 @@
     <title>Sample</title>
 
     <!-- Custom fonts for this template-->
-
-
-    <link href="{{url_for('static', filename='html5up-prologue/assets/css/main.css')}}" rel="stylesheet"
-        type="text/css">
-
     <link
         href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}"
         rel="stylesheet" type="text/css">
@@ -27,8 +22,6 @@
     <!-- Custom styles for this template-->
     <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
         rel="stylesheet" type="text/css">
-
-
 
 
 </head>
@@ -77,7 +70,6 @@
             </li>
 
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -85,8 +77,6 @@
             <div class="sidebar-heading">
                 Introduction
             </div>
-
-
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -149,11 +139,11 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <h1>Contact</h1>
+                                <h1>Mypage</h1>
                             </div>
                         </div>
                     </form>
-                    
+
 
 
                     <ul class="navbar-nav ml-auto">
@@ -164,123 +154,57 @@
                         
                         <div class="topbar-divider d-none d-sm-block"></div>
             
-                        {% if(loginId==''): %}
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">LOGIN</span>
-                              
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                              <a class="dropdown-item" href="login_page">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Login
-                              </a>
-                              <a class="dropdown-item" href="forgot_password_page">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Forgot Password
-                              </a>
-                              <a class="dropdown-item" href="register_page">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Register
-                              </a>
-                            
-                            </div>
-                          </li>
-                        {% else: %}
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
-                              
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                              <a class="dropdown-item" href="mypage">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Mypage
-                              </a>
-                              <div class="dropdown-divider"></div>
+                              
                               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                               </a>
                             </div>
                           </li>
-                        
-                        {% endif %}
                       </ul>
 
 
                 </nav>
                 <!-- End of Topbar -->
 
-
-
-
-
-                <!-- Contact -->
-                <section id="contact" class="four">
-                    <div class="container">
-
-                        <header>
-                            <h2>What's the problem?</h2>
-                        </header>
-
-                        <p>Please feel free to inquire about any problems you may have while using SAMPLE.<br>We are always ready to solve problems :)</p>
-
-                        <form method="post" action="#">
-                            <div class="row">
-                                <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" />
-                                </div>
-                                <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" />
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="message" placeholder="Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Send
-                                        Message</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </section>
-
-
-
-
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
         </div>
         <!-- End of Page Wrapper -->
-
-
 
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="/logout?url=/contact_page">Logout</a>
-                    </div>
-                </div>
-            </div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
         </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout?url=/">Logout</a>
+        </div>
+    </div>
+</div>
+</div>
+
 
 
         <!-- Bootstrap core JavaScript-->

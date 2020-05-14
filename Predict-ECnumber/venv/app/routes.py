@@ -89,6 +89,22 @@ def register_page():
 def login_page():
   return render_template('login_page.html')
 
+@app.route('/mypage')
+def mypage():
+  
+    if 'username' in session:
+
+      result = '%s' % escape(session['username'])
+      print(result,'main')
+      return render_template('mypage.html', loginId = result)
+    else:
+      print('없어서 추가함')
+      session['username'] = ''
+      result = '%s' % escape(session['username'])
+
+    print(result)
+    return redirect('/mypage')
+
 @app.route('/forgot_password_page')
 def forgot_password_page():
   return render_template('forgot_password_page.html')
@@ -137,8 +153,6 @@ def loginProc():
 
 @app.route("/login_route", methods=['GET', 'POST'])
 def login_route():
-
-
   if request.method == "POST":
     reqid = request.form["id"]
     reqpw = request.form["pw"]
@@ -166,3 +180,20 @@ if __name__ == '__main__':
   app.use_reloader=True
   app.run(host='0.0.0.0', port=80) 
   #port : 5000
+
+
+@app.route('/register_route', methods=['GET', 'POST'])
+def register_route(): 
+  #html에서 입력받은 값 전송 받음(post)
+
+  if request.method == "POST":
+    reqid = request.form["id"]
+    reqpw = request.form["pw"]
+    reqfi = request.form["first"]
+    reqla = request.form["last"]
+    print(reqid,reqpw,reqfi,reqla)
+    
+    content = mysql_dao.get_dbInsert_register(reqid,reqpw,reqfi,reqla)
+    #content값은 T/F
+
+  return content
