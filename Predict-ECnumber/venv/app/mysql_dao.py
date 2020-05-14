@@ -74,19 +74,26 @@ def get_dbInsert_register(email, pw, first, last):
     conn = connection.connection()
 
     try:
+        sql = "SELECT email FROM test.member where email =" + "'" + email + "'"
         cursor = conn.cursor()
-        sql = "INSERT INTO member (email, pw, first, last) VALUES (%s, %s, %s, %s);"
-        val = ("a","a","a","a")
-        cursor.execute(sql,val)
-
-        conn.commit()
-
-        print(cursor.rowcount,"되냐")
+        cursor.execute(sql)
+        row_num = cursor.rowcount
         
     finally:
         cursor.close()
 
-    #if회원가입 중복이면 fail
-    #else Insert와 true
+    if row_num > 0:
+        return "fail"
+    
+    else:
+        try:
+            cursor = conn.cursor()
+            sql = "INSERT INTO member (email, pw, first, last) VALUES (%s, %s, %s, %s);"
+            val = (email, pw, first, last)
+            cursor.execute(sql,val)
 
-    return "fail"
+            conn.commit()
+        
+        finally:
+            cursor.close()
+            return "true"

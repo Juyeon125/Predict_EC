@@ -175,13 +175,6 @@ def logout_route():
   return redirect(request.args.get('url'))
   
 
-if __name__ == '__main__':
-  app.debug = True
-  app.use_reloader=True
-  app.run(host='0.0.0.0', port=80) 
-  #port : 5000
-
-
 @app.route('/register_route', methods=['GET', 'POST'])
 def register_route(): 
   #html에서 입력받은 값 전송 받음(post)
@@ -197,3 +190,12 @@ def register_route():
     #content값은 T/F
 
   return content
+
+
+
+if __name__ == '__main__':
+  app.debug = True
+  app.use_reloader=True
+  app.run(host='0.0.0.0', port=80) 
+  #port : 5000
+
