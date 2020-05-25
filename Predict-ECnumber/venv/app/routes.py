@@ -224,9 +224,9 @@ def register_route():
 # 데이터 예측 처리
 cnn = CNN1()
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET'])
 def make_prediction():
-    if request.method == 'POST':
+    if request.method == 'GET':
 
         #predict_value = cnn(data)
         #, pred = torch.max(predict_value.data, 1)
@@ -236,7 +236,7 @@ def make_prediction():
         #if pred == 1:
             #cnn2(data)
             #cnn3(data)
-        test_data = "MQYLHCCLQIAPNQEGMVQAGGQGHGLARVVLRAVLSPPCWAPHSPCGSPAATEAGRLMRRLPSVGGRMTAPKTPRFLTRRPPASSPEDPPLPHPKTPRFLTQRPPASLPRRPRFLTLGPVSSHSSGDLRLWTAHQLPQQGGCPG"
+        test_data = "MKARAEKIADGLYWTGVLDWDIRNYHGYTLQGTTYNAYLVFGDEGVALIDNSYPGTFQELMARMEDAFNREGREMRVDFIVQNHVERDHSGVLVELHRRFPEAEIHCTEVAVEGLLKHYPALEGTEFRTVKTGDSIDLGGRTLTFLEAPLLHWPDSMFTFLDTGILFSNDAFGQHLCYPQRLDTEIPEYILMDAAKKFYANLITPLSKLVLRKFDEVKELGLLDKIGMIAPSHGQIWTEPMKIIEAYTAWATGKVKKKVTVIYDTMHHSTAMMAHAIAEGAMSEGADVRVYYLHEDDRSEIVKDILDSHAIALGAPAIYDEPYPSVGDLLMYLRGLKFNRTGQRRAMVFGSMGGRGGATGTMQKLLADAGFDVMEADEIYYVPNNEELDACFEAGRRLAGDLNE"
         
         test_data = split_data(test_data)
         test_data = torch.FloatTensor(test_data)
@@ -247,10 +247,10 @@ def make_prediction():
         
         if pred == 1:
             a = "효소"
-            b = "효소"
+            
         else:
             a = "비효소"
-            b = "비효소"
+            
         # 텍스트 파일 오픈
         # f = open('static/test.txt', 'r')
         
@@ -258,7 +258,7 @@ def make_prediction():
         #b= str("효소")
         
         # 결과 리턴
-        return render_template('index.html', a = a, b = b)
+        return render_template('index.html', a = a)
 
         # 텍스트 결과 리턴
         # return "</br>".join(f.readlines())

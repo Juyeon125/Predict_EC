@@ -8,24 +8,25 @@
 </head>
 
 <body>
+    <span id="time">
+        <input type="button" value="예측">
+        <span class="result_lable">
+            {{ a }}
+        </span>
+    </span>
 
-    <div class="w3layouts">
-            <form id="upload" action="/predict" method="POST" enctype="application/x-www-form-urlencoded">
-                <div class="upload-btn-wrapper">
-                    <button class="btn"></button>
-                    
-                </div>
-                <input type="submit" value="예측 결과">
-                {% if b %}
-                    <span class="result_lable">
-                        {{ b }}
-                    </span>
-                {% endif %}
-                    <span class="result_lable">
-                        {{ a }}
-                    </span>
-            </form>
-    </div> 
+    <script>
+        document.querySelector('input').addEventListener('click', function (event) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/predict');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.querySelector('#time').innerHTML = xhr.responseText;
+                }
+            }
+            xhr.send();
+        }); 
+    </script>
 
 </body>
 
