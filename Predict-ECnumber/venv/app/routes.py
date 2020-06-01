@@ -1,12 +1,61 @@
 from flask import Flask, url_for, session, redirect, escape, render_template, request, session
 import mysql_dao
 import json
-from ml.model import *
+import numpy as np
+import torch
+import pandas as pd
+from ml.cnn1_test_pyfile import CNN1
+from ml.cnn2_test_pyfile import CNN2
+from ml.cnn3_test_pyfile import CNN3
+
 import flask
 
 app = Flask(__name__)      
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+thrid_data = pd.read_csv('./model/thrid_second_test.csv')
+fourth_data = pd.read_csv('./model/Fourth_EC_total.csv')
+thrid_list = thrid_data.loc[:,'EC']
+fourth_list = fourth_data.loc[:,'LABEL']
+def predict_ec(want_predict):
+    a = split_data(want_predict)
+    data = torch.FloatTensor(a)
+    data = data.view(1,1,1000,21)
+    classfier = cnn1(data)
+    fourth_predict_list = []
+    third_predict_list = []
+    percentage_list = []
+    
+    _, binary = torch.max(classfier.data, 1)
+    if binary == 1:
+        thrid_predict = cnn2(data)
+        thrid_predict = 100 * torch.FloatTensor(thrid_predict)
+
+        thrid_sort, thrid_sort_index = torch.sort(thrid_predict, dim=1, descending=True)
+        thrid_predict_sort = thrid_sort[0][:5].detach()
+        thrid_predict_sort = np.array(thrid_predict_sort)
+        
+        thrid_sort_index = np.array(thrid_sort_index[0][:5])
+        
+        fourth_predict = cnn3(data)
+        
+        fourth_predict = 100 * torch.FloatTensor(fourth_predict)
+        
+        fourth_sort, fourth_index = torch.sort(fourth_predict, dim=1, descending=True)
+        fourth_sort = fourth_sort[0][:5].detach()
+        fourth_sort = np.array(fourth_sort)
+        
+        fourth_index = np.array(fourth_index[0][:5])
+
+        for i in range(5):
+            third_data = thrid_list[thrid_sort_index[i]]
+            third_predict_list.append(third_data)
+            
+            fourth_data = fourth_list[fourth_index[i]]
+            fourth_predict_list.append(fourth_data)
+     
+    return fourth_predict_list, fourth_sort
 
 def split_data(train): # dataset ->a (X_train)
     list_test = []
@@ -42,9 +91,9 @@ def index():
     print(result)
     return redirect('/')
 
-@app.route("/index")
-def index2():
-    return flask.render_template('index.html')
+@app.route('/test')
+def test():
+  return render_template('test.html')
 
 @app.route('/search_page')
 def search_page():
@@ -114,21 +163,25 @@ def register_page():
 def login_page():
   return render_template('login_page.html')
 
+
 @app.route('/mypage')
 def mypage():
-  
-    if 'username' in session:
+  content = mysql_dao.get_saveInfo_Select()
+  print(content)
 
-      result = '%s' % escape(session['username'])
-      print(result,'main')
-      return render_template('mypage.html', loginId = result)
-    else:
-      print('없어서 추가함')
-      session['username'] = ''
-      result = '%s' % escape(session['username'])
+  if 'username' in session:
 
-    print(result)
-    return redirect('/mypage')
+    result = '%s' % escape(session['username'])
+    print(result,'main')
+    return render_template('mypage.html', loginId = result, content=content)
+  else:
+    print('없어서 추가함')
+    session['username'] = ''
+    result = '%s' % escape(session['username'])
+
+  print(result)
+  return redirect('/mypage', content=content)
+
 
 @app.route('/forgot_password_page')
 def forgot_password_page():
@@ -154,6 +207,15 @@ def ecFunction_page():
 @app.route("/searchEc", methods=['GET', 'POST'])
 def loginProc():
     if request.method == "POST":
+
+      result1 = {'ec':'1.1.1.1', 'accuracy':'90.0'}
+      result2 = {'ec':'2.1.1.1', 'accuracy':'80.0'}
+      result3 = {'ec':'3.1.1.1', 'accuracy':'70.0'}
+      result4 = {'ec':'4.1.1.1', 'accuracy':'60.0'}
+      result5 = {'ec':'5.1.1.1', 'accuracy':'50.0'}
+
+      return result1
+
         #밑에 코드는 사용자가 입력한 시퀀스 값
         #resSeq = request.form["seq"]
 
@@ -165,16 +227,41 @@ def loginProc():
         #######
         # ------ Model -----------
 
-      f = open("static/ecnumResult.txt", 'r')
-      lines = f.readlines()
-      for line in lines:
-        resSeq=line
-        f.close()
-        content = mysql_dao.get_dbSelect(resSeq)
+      #f = open("static/ecnumResult.txt", 'r')
+      #lines = f.readlines()
+      #for line in lines:
+        #resultEC=line
+        #f.close()
+        #content = mysql_dao.get_dbSelect(resultEC)
         #print(content[0].scnumber)
         #print(json_string,"server")
-        return content
+        #return content
     #return render_template("index.html")
+
+
+@app.route("/save_Result", methods=['GET', 'POST'])
+def save_Result():
+  if request.method == "POST":
+    reqid = request.form["seq"]
+    inputreqid = request.form["input"]
+
+    json_data = json.loads(reqid)
+
+    print(inputreqid,'너누구냐')
+    print(json_data['accepted_name'])
+    print(json_data['ec_num'])
+    print(json_data['reaction'])
+
+
+    save_ecnum = json_data['ec_num']
+    save_accep = json_data['accepted_name']
+    save_reaction = json_data['reaction']
+
+    content = mysql_dao.get_dbInsert_saveInfo(inputreqid,save_ecnum, save_accep, save_reaction)
+
+  return reqid
+
+
 
 @app.route("/login_route", methods=['GET', 'POST'])
 def login_route():
@@ -222,51 +309,42 @@ def register_route():
 # pred = 큰 값의 index를 반환해주는데
 # 
 # 데이터 예측 처리
-cnn = CNN1()
+cnn1 = CNN1()
+cnn2 = CNN2()
+cnn3 = CNN3()
 
-@app.route('/predict', methods=['GET'])
-def make_prediction():
-    if request.method == 'GET':
+@app.route('/predict_ec', methods=['GET', 'POST'])
+def make_prediction1():
+    if request.method == 'POST':
+        input_value = request.form["seq"]
+        test_data = input_value
 
-        #predict_value = cnn(data)
-        #, pred = torch.max(predict_value.data, 1)
-        # pred = 0, 1 0은 비효소 1은 효소
-        # cnn2, cnn3 연계할라면
-        
-        #if pred == 1:
-            #cnn2(data)
-            #cnn3(data)
-        test_data = "MKARAEKIADGLYWTGVLDWDIRNYHGYTLQGTTYNAYLVFGDEGVALIDNSYPGTFQELMARMEDAFNREGREMRVDFIVQNHVERDHSGVLVELHRRFPEAEIHCTEVAVEGLLKHYPALEGTEFRTVKTGDSIDLGGRTLTFLEAPLLHWPDSMFTFLDTGILFSNDAFGQHLCYPQRLDTEIPEYILMDAAKKFYANLITPLSKLVLRKFDEVKELGLLDKIGMIAPSHGQIWTEPMKIIEAYTAWATGKVKKKVTVIYDTMHHSTAMMAHAIAEGAMSEGADVRVYYLHEDDRSEIVKDILDSHAIALGAPAIYDEPYPSVGDLLMYLRGLKFNRTGQRRAMVFGSMGGRGGATGTMQKLLADAGFDVMEADEIYYVPNNEELDACFEAGRRLAGDLNE"
-        
-        test_data = split_data(test_data)
-        test_data = torch.FloatTensor(test_data)
-        test_data = test_data.view(1,1,1000,21)
-        
-        predict_value = cnn(test_data)
-        _, pred = torch.max(predict_value.data, 1)
-        
-        if pred == 1:
-            a = "효소"
-            
-        else:
-            a = "비효소"
-            
-        # 텍스트 파일 오픈
-        # f = open('static/test.txt', 'r')
-        
-        #a= str("비효소")
-        #b= str("효소")
-        
-        # 결과 리턴
-        return render_template('index.html', a = a)
-
-        # 텍스트 결과 리턴
-        # return "</br>".join(f.readlines())
+        fourth_one, fouth_two =  predict_ec(test_data)
+        result_ec = {'ec1':fourth_one[0],'ec2':fourth_one[1],'ec3':fourth_one[2],'ec4':fourth_one[3],'ec5':fourth_one[4]}
+        result_acc = {'acc1':round(fouth_two[0],3),'acc2':round(fouth_two[1],3),'acc3':round(fouth_two[2],3),'acc4':round(fouth_two[3],3),'acc5':round(fouth_two[4],3)}
+        print(result_acc)
+        a = round(fouth_two[0],3)
+        print(a)
+        #return_acc = str(fouth_two)
+        # str만 return 할수 있음
+        #fouth_two[0]
+        return result_ec, result_acc
 
 
 if __name__ == '__main__':
-  cnn = torch.load('./model/cnn1_training-Copy3.pth')
-  cnn.eval()
+  device = torch.device('cpu')
+  #cnn1 = torch.load('./model/cnn1.pth')
+  cnn1.load_state_dict(torch.load('./model/cnn1.pth', map_location=device))
+  cnn1.eval()
+
+  #cnn2 = torch.load('./model/cnn1.pth')
+  cnn2.load_state_dict(torch.load('./model/cnn2.pth', map_location=device))
+  cnn2.eval()
+
+  #cnn3 = torch.load('./model/cnn1.pth')
+  cnn3.load_state_dict(torch.load('./model/cnn3.pth', map_location=device))
+  cnn3.eval()
+  
   app.debug = True
   app.use_reloader=True
   app.run(host='0.0.0.0', port=80) 

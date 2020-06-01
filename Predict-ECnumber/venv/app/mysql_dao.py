@@ -97,3 +97,61 @@ def get_dbInsert_register(email, pw, first, last):
         finally:
             cursor.close()
             return "true"
+
+def get_dbInsert_saveInfo(seq, ec_num, accepted_name, reaction):
+
+    conn = connection.connection()
+
+
+    try:
+        sql = "SELECT seq FROM test.search where seq =" + "'" + seq + "'"
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        row_num = cursor.rowcount
+        
+    finally:
+        cursor.close()
+
+    if row_num > 0:
+        return "fail"
+    
+    else:
+        try:
+            cursor = conn.cursor()
+            sql = "INSERT INTO search (seq, ec_num, accepted_name, reaction) VALUES (%s, %s, %s, %s);"
+            val = (seq, ec_num, accepted_name, reaction)
+            cursor.execute(sql,val)
+            print("돼")
+            conn.commit()
+        
+        finally:
+            cursor.close()
+            return "true"
+
+
+
+def get_saveInfo_Select():
+    conn = connection.connection()
+
+    try:
+        sql = "SELECT ec_num, accepted_name, reaction FROM test.search"
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        row_num = cursor.rowcount
+        
+    finally:
+        cursor.close()
+
+    if row_num > 0:
+        object_list = []
+        row = cursor.fetchall()
+       
+        object_list.append(row_num)
+        print(object_list)
+        for row_data in row:
+            json_object = {"ec_num": row_data[0], "accepted_name": row_data[1], "reaction": row_data[2]}
+            object_list.append(json_object)
+        
+        return object_list
+
+    return "fail"

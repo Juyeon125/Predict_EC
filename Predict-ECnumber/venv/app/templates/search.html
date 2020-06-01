@@ -25,9 +25,39 @@
 
 
 </head>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-  function loadXMLDoc() {
+  function showPlz() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var result = this.responseText;
+        const res = JSON.parse(result);
+        console.log(result)
+        txt = '';
+        txt += '<p style="font-weight: bold";> Result1 : ' + res.ec1 + '</p><hr>'
+        txt += '<p style="font-weight: bold";> Result2 : ' + res.ec2 + '</p><hr>'
+        txt += '<p style="font-weight: bold";> Result3 : ' + res.ec3 + '</p><hr>'
+        txt += '<p style="font-weight: bold";> Result4 : ' + res.ec4 + '</p><hr>'
+        txt += '<p style="font-weight: bold";> Result5 : ' + res.ec5 + '</p><hr>'
+        document.getElementById("function_result").innerHTML = txt;
+/*
+        txt2 = '';
+        txt2 += '<p style="font-weight: bold";> Result : ' + result + '</h4><hr>'
+        document.getElementById("function_result").innerHTML = txt2;
+        */
+      }
+    };
+    var parameter = 'seq=' + document.getElementById("seqNumber").value;
+    console.log(parameter);
+    xhr.open("post", "/predict_ec", true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send(parameter);
+  }
+
+/*
+  function search_ec() {
     var xhttp = new XMLHttpRequest();
     //3.4.23.36
     xhttp.onreadystatechange = function () {
@@ -37,23 +67,23 @@
         if (ecNumber == "fail") {
           alert("다시");
         }
+
         else {
           const obj = JSON.parse(ecNumber);
-            txt = '';
-						txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec_num + '</h4><hr>'
-						txt += '<p>Accepted Name : ' + obj.accepted_name + '<br>'
-            txt += '<p>Reaction : ' + obj.reaction + '<br>'
-						txt += '</p>'
-						document.getElementById("function_result").innerHTML = txt;
+          txt = '';
+          txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec + '</h4><hr>'
+          document.getElementById("function_result").innerHTML = txt;
         }
       }
     };
     var parameter = 'seq=' + document.getElementById("seqNumber").value;
-    //console.log(parameter);
+    console.log(parameter);
     xhttp.open("post", "/searchEc", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(parameter);
+
   }
+  */
 </script>
 
 <body id="page-top">
@@ -176,50 +206,54 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Alerts -->
-            
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             {% if(loginId==''): %}
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">LOGIN</span>
-                  
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  style="font-weight: bold; font-size: 20px;">LOGIN</span>
+
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="login_page">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Login
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="login_page">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Login
-                  </a>
-                  <a class="dropdown-item" href="forgot_password_page">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Forgot Password
-                  </a>
-                  <a class="dropdown-item" href="register_page">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Register
-                  </a>
-                </div>
-              </li>
+                <a class="dropdown-item" href="forgot_password_page">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Forgot Password
+                </a>
+                <a class="dropdown-item" href="register_page">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Register
+                </a>
+              </div>
+            </li>
             {% else: %}
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
-                  
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
+
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="mypage">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Mypage
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="mypage">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Mypage
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                  </a>
-                </div>
-              </li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
             {% endif %}
           </ul>
 
@@ -241,16 +275,18 @@
                         <div class="text-center">
                           <p class="mb-4"><br></p>
                           <h1 class="h4 text-gray-900 mb-2">Are you curious EC number?</h1>
+                         
                           <p class="mb-4"><br></p>
                         </div>
 
                         <form action="" method="post" class="user">
                           <div class="form-group">
-                            <textarea style="text-transform: uppercase;" onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
-                            onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
-                            class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                            placeholder="Enter sequence..." autocomplete="off"></textarea>
-                            
+                            <textarea style="text-transform: uppercase;"
+                              onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                              onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
+                              class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
+                              placeholder="Enter sequence..." autocomplete="off"></textarea>
+
                             <script>
 
                               function IsAlphaNumeric(ee) {
@@ -272,83 +308,88 @@
                               }
 
                             </script>
-                            <br>
-                            <input type="text" class="form-control form-control-user" id="resultEc" value=""
-                              placeholder="Show EC number!" disabled>
-                            <br>
 
                           </div>
-                          <button class="btn btn-secondary" type="button" onclick="loadXMLDoc()">Search EC
-                            number</button>
-                        </form>
 
+                          <button class="btn btn-secondary" type="button" onclick="showPlz()">Show Result</button>
+
+                          
+
+
+                        </form>
                         <hr>
                       </div>
                     </div>
 
                     <div class="col-lg-6" id="function_result" style="padding: 50px;">
-                    
-                    
+
+                      <div class="mb-1 small">Your Result</div>
+                      <div class="progress mb-4" id="progress_bar">
+                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      
                     </div>
 
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- End of Content Wrapper -->
-
       </div>
-      <!-- End of Page Wrapper -->
+      <!-- End of Content Wrapper -->
 
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-      </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+              <span aria-hidden="true">×</span>
             </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="/logout?url=/search_page">Logout</a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
 
 
 
-      <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
 
 
-      <script
-        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
-      <script
-        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-      <!-- Core plugin JavaScript-->
-      <script
-        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-      <!-- Custom scripts for all pages-->
-      <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
 
-      <!-- Page level plugins
+    <!-- Page level plugins
       <script
         src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
       -->
-      <!-- Page level custom scripts 
+    <!-- Page level custom scripts 
       <script
         src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
       <script
