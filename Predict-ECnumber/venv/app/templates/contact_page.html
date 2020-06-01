@@ -228,17 +228,40 @@
 
                         <p>Please feel free to inquire about any problems you may have while using SAMPLE.<br>We are always ready to solve problems :)</p>
 
-                        <form method="post" action="#">
+
+                        <!--
+                        <div id="message">
+                            <div id="subject"><h1>Email System</h1></div>
+                            <h1>{{ content }}</h1>
+                            <form action="/email" id="email-form" method=post>
+                             <label class="lgend">이름</label>
+                             <input type="text" name=email_sender value=""/>
+                       
+                             <label class="lgend">답장받을 이메일</label>
+                             <input type="text" name=email_sender value=""/>
+                       
+                             <label class="lgend">개발자 메일</label>
+                             <input type="text" name=email_receiver value="lms960908@naver.com" readonly />   
+                       
+                             <label class="lgend">Message</label>
+                             <textarea type="text" name=email_content value="" cols="50" rows="10"></textarea>
+                             <input type=submit value="SEND">
+                            </form>
+                           </div>
+                           -->
+                        <form method="post" action="/contact_page" id = "email-form">
                             <div class="row">
-                                <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" />
+                                <div class="col-6 col-12-mobile"><input type="text" name="name_sneder" placeholder="Name" value="" />
                                 </div>
-                                <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" />
+                                <div class="col-6 col-12-mobile"><input type="text" name="email_sender" placeholder="Email" value="" />
+                                </div>
+                                <div class="col-6 col-12-mobile" style ="display:none"><input type="text" name="email_receiver" placeholder="Email" value="lms960908@naver.com" readonly />
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" placeholder="Message"></textarea>
+                                    <textarea type="text" name="email_content" placeholder="Message" value=""></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Send
+                                    <button class="btn btn-secondary" type="submit" data-dismiss="modal">Send
                                         Message</button>
                                 </div>
                             </div>

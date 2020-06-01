@@ -9,8 +9,18 @@ from ml.cnn2_test_pyfile import CNN2
 from ml.cnn3_test_pyfile import CNN3
 
 import flask
+from flask_mail import Mail, Message
+import smtplib
 
 app = Flask(__name__)      
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = "minsu960908@gmail.com" #google id
+app.config['MAIL_PASSWORD'] = 'qwer4231' #google pw
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USE_TLS'] = False
+mail = Mail(app)   
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
@@ -330,6 +340,36 @@ def make_prediction1():
         #fouth_two[0]
         return result_ec, result_acc
 
+@app.route("/contact_page", methods=['post', 'get'])
+def email_test():
+   
+    if request.method == 'POST':
+        senders = request.form['email_sender']
+        
+        receiver = request.form['email_receiver']
+        content = senders + request.form['email_content']
+        receiver = receiver.split(',')
+       
+        for i in range(len(receiver)):
+            receiver[i] = receiver[i].strip()
+           
+        print(receiver)
+       
+        result = send_email(senders, receiver, content)
+       
+        if not result:
+            return render_template('contact_page.html', content="Email is sent")
+        else:
+            return render_template('contact_page.html', content="Email is not sent")
+       
+    else:
+        return render_template('contact_page.html')
+   
+def send_email(senders, receiver, content):
+    msg = Message('SAMPLE 문의 메일', sender = senders, recipients = receiver)
+    msg.body = content
+    mail.send(msg)
+
 
 if __name__ == '__main__':
   device = torch.device('cpu')
@@ -347,6 +387,7 @@ if __name__ == '__main__':
   
   app.debug = True
   app.use_reloader=True
+  app.secret_key = "123123123"
   app.run(host='0.0.0.0', port=80) 
   #port : 5000
 
