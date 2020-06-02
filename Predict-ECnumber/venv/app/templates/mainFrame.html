@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +22,6 @@
     <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
         rel="stylesheet" type="text/css">
 
-
 </head>
 
 <body id="page-top">
@@ -37,49 +35,34 @@
     </style>
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         {% extends "sidebar.html" %}
         {% block content %}
-        
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <h1>Welcome All EC</h1>
-                                
                             </div>
-                            
                         </div>
                     </form>
-                
                     <ul class="navbar-nav ml-auto">
-
-                        
-            
                         <!-- Nav Item - Alerts -->
-                        
                         <div class="topbar-divider d-none d-sm-block"></div>
-            
                         {% if(loginId==''): %}
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">LOGIN</span>
-                              
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -95,14 +78,12 @@
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Register
                               </a>
-                            
                             </div>
                           </li>
                         {% else: %}
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
-                              
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -117,57 +98,31 @@
                               </a>
                             </div>
                           </li>
-                        
                         {% endif %}
                       </ul>
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-                    
-
                 </nav>
                 <div class="container">
                     <div class="jumbotron">
                         <h1 class="text-center">EC number Predict</h1>
-                        <p class="text-center">This site predicts EC numbers by entering Sequence.</p>
-                        <p class="text-center"><a class="btn btn-primary btn-log" href="/search_page" role="button">Go
-                                Predict</a></p>
+                        <p class="text-center">This site predicts EC numbers by entering Protein Sequence.</p>
+                        <p class="text-center"><a class="btn btn-primary btn-log" href="/search_page" role="button">Go Predict</a></p>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <h4>Introducing the website</h4>
-                            <p>Entering a sequence helps you<br>
-                                predict the EC number.</p>
+                            <p>Enter protein sequence to output EC number.</p>
                             <p><a class="btn btn-primary" data-target="#modal1" data-toggle="modal"
                                     style="color:#ffffff">See More</a></p>
                         </div>
                         <div class="col-md-4">
                             <h4>How do you predict?</h4>
-                            <p>Let me tell you how we use to predict<br> EC numbers.</p>
+                            <p>We use fast and accurate models.</p>
                             <p><a class="btn btn-primary" data-target="#modal2" data-toggle="modal"
                                     style="color:#ffffff">See More</a></p>
                         </div>
                         <div class="col-md-4">
                             <h4>Developer</h4>
-                            <p>This is a page that introduces the four developers who created this website.</p>
-
+                            <p>Let me introduce us who developed this website.</p>
                             <p><a class="btn btn-primary" href="/developer_page">See More</a></p>
                         </div>
                     </div>
@@ -179,29 +134,24 @@
                         <div class="row">
                             <div class="col-sm-2" style="text-align: center;">
                                 <h4 style="font-size: 1.2em;">Copyright &copy; 2020</h4>
-
                                 <h5 style="font-size:0.8em">Team SAMPLE</h5>
                             </div>
-
                             <div class="col-sm-2">
                                 <h4 style="text-align: center; font-size:1.2em;">NAVIGATION</h4>
                                 <div class="list-group">
                                     <a href="/intro_page" class="list-group-item" style="font-size:0.8em">What EC
                                         number</a>
-
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <h4 style="text-align: center; font-size:1.2em;">　</h4>
                                 <div class="list-group">
-
                                     <a href="/contact_page" class="list-group-item" style="font-size:0.8em">Contact</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <h4 style="text-align: center; font-size:1.2em;">SOURCE</h4>
                                 <div class="list-group">
-
                                     <a href="https://www.github.com/Juyeon125/Predict_EC" class="list-group-item"
                                         style="font-size:0.8em">github </a>
                                 </div>
@@ -224,8 +174,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" style="text-align: center;">
-                                    If you are looking for an ec number, you can enter a sequence.<br>
-                                    Also provide information on the ec number you are looking for.<br><br>
+                                    The enzyme number, which indicates the function of enzymes, is widely used in various fields. We provide users with a fast, accurate and convenient enzyme number prediction service.
                                     <img src="{{url_for('static', filename='img/protein.jpg')}}"
                                         style="width: 300px; height: 256px;" alt="Pic 01" />
                                 </div>
@@ -242,8 +191,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" style="text-align: center;">
-                                    Use deep learning to learn the existing sequence.<br> Then use the learned data to
-                                    output the expected results.
+                                    The enzyme number is predicted quickly and accurately through the deep learning model we developed.
                                     <img src="{{url_for('static', filename='img/DeepEC.jpg')}}"
                                         style="width: 300px; height: 256px;" alt="Pic 02" />
                                 </div>
@@ -251,11 +199,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- End of Page Wrapper -->
-
 
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
@@ -282,35 +228,18 @@
             </div>
         </div>
 
-
         <!-- Bootstrap core JavaScript-->
-
-
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <!-- Core plugin JavaScript-->
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
         <!-- Custom scripts for all pages-->
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
-
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
         <!-- Page level plugins -->
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
-
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
         <!-- Page level custom scripts -->
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
-        <script
-            src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
-
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
+        <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
 </body>
-
 </html>
-
 {% endblock %}
