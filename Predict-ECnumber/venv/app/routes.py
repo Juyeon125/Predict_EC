@@ -1,6 +1,7 @@
 from flask import Flask, url_for, session, redirect, escape, render_template, request, session
 import mysql_dao
 import json
+from io import StringIO
 import numpy as np
 import torch
 import pandas as pd
@@ -16,8 +17,8 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = "minsu960908@gmail.com" #google id
-app.config['MAIL_PASSWORD'] = 'qwer4231' #google pw
+app.config['MAIL_USERNAME'] = "minsu960908@gmail.com" 
+app.config['MAIL_PASSWORD'] = 'qwer4231' 
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USE_TLS'] = False
 mail = Mail(app)   
@@ -74,25 +75,24 @@ def split_data(train): # dataset ->a (X_train)
     embedding_matrix = np.zeros((1000, 21))
     aa_list = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y', 'X']
     
-    for i in range(len(aa_list)): # 21번만큼 반복
-        if len(train) > 1000: # 현재 스플릿된 SEQ의 값이 1000보다 크면  lengh_test에 1000을 넣어줌
+    for i in range(len(aa_list)): # 21번 반복
+        if len(train) > 1000:
             length_test = 1000
         else:
-            length_test = len(train) # 1000보다 아래면 그냥 그 길이를 넣어줌
-        for j in range(length_test): # lengh_test의 길이만큼 반복 (1000또는 그보다 아래)
-            if aa_list[i] == train[j]: # aa_list의 값(0번쨰부터 ~21번쨰)과  SEQ split해서 하나씩 검사
-                     #A ==    #ASDADSASADASGSADASGDSFSDDFDSFSDFSDFSDF
+            length_test = len(train)
+        for j in range(length_test):
+            if aa_list[i] == train[j]: 
                 embedding_matrix[j,i] = 1
                     
-    return embedding_matrix #모든 SEQ를 한글자씩 잘라놓은것을 리턴
+    return embedding_matrix
     
 @app.route('/')
 def index():
   if 'username' in session:
-
     result = '%s' % escape(session['username'])
     print(result,'main')
     return render_template('mainFrame.html', loginId = result)
+
   else:
     print('없어서 추가함')
     session['username'] = ''
@@ -108,10 +108,10 @@ def test():
 @app.route('/search_page')
 def search_page():
   if 'username' in session:
-
     result = '%s' % escape(session['username'])
     print(result,'main')
     return render_template('search.html', loginId = result)
+
   else:
     print('없어서 추가함')
     session['username'] = ''
@@ -123,10 +123,10 @@ def search_page():
 @app.route('/intro_page')
 def intro_page():
   if 'username' in session:
-
     result = '%s' % escape(session['username'])
     print(result,'main')
     return render_template('intro_page.html', loginId = result)
+
   else:
     print('없어서 추가함')
     session['username'] = ''
@@ -138,10 +138,10 @@ def intro_page():
 @app.route('/developer_page')
 def developer_page():
     if 'username' in session:
-
       result = '%s' % escape(session['username'])
       print(result,'main')
       return render_template('developer_page.html', loginId = result)
+
     else:
       print('없어서 추가함')
       session['username'] = ''
@@ -153,10 +153,10 @@ def developer_page():
 @app.route('/contact_page')
 def contact_page():
     if 'username' in session:
-
       result = '%s' % escape(session['username'])
       print(result,'main')
       return render_template('contact_page.html', loginId = result)
+
     else:
       print('없어서 추가함')
       session['username'] = ''
@@ -173,17 +173,16 @@ def register_page():
 def login_page():
   return render_template('login_page.html')
 
-
 @app.route('/mypage')
 def mypage():
   content = mysql_dao.get_saveInfo_Select()
   print(content)
 
   if 'username' in session:
-
     result = '%s' % escape(session['username'])
     print(result,'main')
     return render_template('mypage.html', loginId = result, content=content)
+
   else:
     print('없어서 추가함')
     session['username'] = ''
@@ -202,15 +201,14 @@ def ecFunction_page():
   content = mysql_dao.get_tableSelect()
 
   if 'username' in session:
-
     result = '%s' % escape(session['username'])
     print(result,'main')
     return render_template('ec_function.html', loginId = result, content=content)
+
   else:
     print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
-
     print(result)
     return redirect('/ecFunction_page', content=content)
 
@@ -225,29 +223,6 @@ def loginProc():
       result5 = {'ec':'5.1.1.1', 'accuracy':'50.0'}
 
       return result1
-
-        #밑에 코드는 사용자가 입력한 시퀀스 값
-        #resSeq = request.form["seq"]
-
-
-        # ------ Model -----------
-        ##############
-        ############
-        ##########
-        #######
-        # ------ Model -----------
-
-      #f = open("static/ecnumResult.txt", 'r')
-      #lines = f.readlines()
-      #for line in lines:
-        #resultEC=line
-        #f.close()
-        #content = mysql_dao.get_dbSelect(resultEC)
-        #print(content[0].scnumber)
-        #print(json_string,"server")
-        #return content
-    #return render_template("index.html")
-
 
 @app.route("/save_Result", methods=['GET', 'POST'])
 def save_Result():
@@ -271,8 +246,6 @@ def save_Result():
 
   return reqid
 
-
-
 @app.route("/login_route", methods=['GET', 'POST'])
 def login_route():
   if request.method == "POST":
@@ -284,23 +257,18 @@ def login_route():
       print(content["email"])
       result = content["email"]
       session['username'] = result
-      #session.pop('username', None)
     else:
       result = "fail"
   return result
 
 @app.route("/logout")
 def logout_route():
-
   session.pop('username', None)
-  
   return redirect(request.args.get('url'))
   
 
 @app.route('/register_route', methods=['GET', 'POST'])
 def register_route(): 
-  #html에서 입력받은 값 전송 받음(post)
-
   if request.method == "POST":
     reqid = request.form["id"]
     reqpw = request.form["pw"]
@@ -309,16 +277,9 @@ def register_route():
     print(reqid,reqpw,reqfi,reqla)
     
     content = mysql_dao.get_dbInsert_register(reqid,reqpw,reqfi,reqla)
-    #content값은 T/F
 
   return content
 
-
-#out = [1.0, 0.0], [0.0, 1.0] <- 0, 1 
-# , pred = torch.max(out.data, 1)
-# pred = 큰 값의 index를 반환해주는데
-# 
-# 데이터 예측 처리
 cnn1 = CNN1()
 cnn2 = CNN2()
 cnn3 = CNN3()
@@ -330,19 +291,12 @@ def make_prediction1():
         test_data = input_value
 
         fourth_one, fouth_two =  predict_ec(test_data)
-        result_ec = {'ec1':fourth_one[0],'ec2':fourth_one[1],'ec3':fourth_one[2],'ec4':fourth_one[3],'ec5':fourth_one[4]}
-        result_acc = {'acc1':round(fouth_two[0],3),'acc2':round(fouth_two[1],3),'acc3':round(fouth_two[2],3),'acc4':round(fouth_two[3],3),'acc5':round(fouth_two[4],3)}
-        print(result_acc)
-        a = round(fouth_two[0],3)
-        print(a)
-        #return_acc = str(fouth_two)
-        # str만 return 할수 있음
-        #fouth_two[0]
-        return result_ec, result_acc
+        result_ec = {'ec1':fourth_one[0],'ec2':fourth_one[1],'ec3':fourth_one[2],'ec4':fourth_one[3],'ec5':fourth_one[4],'acc1':str(fouth_two[0]),'acc2':str(fouth_two[1]),'acc3':str(fouth_two[2]),'acc4':str(fouth_two[3]),'acc5':str(fouth_two[4])}
+        
+        return result_ec
 
 @app.route("/contact_page", methods=['post', 'get'])
 def email_test():
-   
     if request.method == 'POST':
         senders = request.form['email_sender']
         
@@ -361,7 +315,6 @@ def email_test():
             return render_template('contact_page.html', content="Email is sent")
         else:
             return render_template('contact_page.html', content="Email is not sent")
-       
     else:
         return render_template('contact_page.html')
    
@@ -370,18 +323,14 @@ def send_email(senders, receiver, content):
     msg.body = content
     mail.send(msg)
 
-
 if __name__ == '__main__':
   device = torch.device('cpu')
-  #cnn1 = torch.load('./model/cnn1.pth')
   cnn1.load_state_dict(torch.load('./model/cnn1.pth', map_location=device))
   cnn1.eval()
 
-  #cnn2 = torch.load('./model/cnn1.pth')
   cnn2.load_state_dict(torch.load('./model/cnn2.pth', map_location=device))
   cnn2.eval()
 
-  #cnn3 = torch.load('./model/cnn1.pth')
   cnn3.load_state_dict(torch.load('./model/cnn3.pth', map_location=device))
   cnn3.eval()
   
@@ -389,5 +338,3 @@ if __name__ == '__main__':
   app.use_reloader=True
   app.secret_key = "123123123"
   app.run(host='0.0.0.0', port=80) 
-  #port : 5000
-

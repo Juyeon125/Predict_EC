@@ -32,28 +32,44 @@
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
+
         var result = this.responseText;
+        console.log(result,"이거 뭐야?")
         const res = JSON.parse(result);
-        console.log(result)
+        var acc1 = Number(res.acc1);
+        var acc2 = Number(res.acc2);
+        var acc3 = Number(res.acc3);
+        var acc4 = Number(res.acc4);
+        var acc5 = Number(res.acc5);
         txt = '';
-        txt += '<p style="font-weight: bold";> Result1 : ' + res.ec1 + '</p><hr>'
-        txt += '<p style="font-weight: bold";> Result2 : ' + res.ec2 + '</p><hr>'
-        txt += '<p style="font-weight: bold";> Result3 : ' + res.ec3 + '</p><hr>'
-        txt += '<p style="font-weight: bold";> Result4 : ' + res.ec4 + '</p><hr>'
-        txt += '<p style="font-weight: bold";> Result5 : ' + res.ec5 + '</p><hr>'
+        txt += '<p style="font-weight: bold";> EC Number1 : ' + res.ec1 + ' Acuuracy :' + res.acc1 + '</p>'
+        txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+        txt += '<div class="progress-bar" role="progressbar" style="width:'+acc1+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+        txt += '</div><hr>'
+        txt += '<p> EC Number2 : ' + res.ec2 + ' Acuuracy :' + res.acc2 + '</p>'
+        txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+        txt += '<div class="progress-bar" role="progressbar" style="width:'+acc2+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+        txt += '</div><hr>'
+        txt += '<p> EC Number3 : ' + res.ec3 + ' Acuuracy :' + res.acc3 + '</p>'
+        txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+        txt += '<div class="progress-bar" role="progressbar" style="width:'+acc3+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+        txt += '</div><hr>'
+        txt += '<p> EC Number4 : ' + res.ec4 + ' Acuuracy :' + res.acc4 + '</p>'
+        txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+        txt += '<div class="progress-bar" role="progressbar" style="width:'+acc4+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+        txt += '</div><hr>'
+        txt += '<p> EC Number5 : ' + res.ec5 + ' Acuuracy :' + res.acc5 + '</p>'
+        txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+        txt += '<div class="progress-bar" role="progressbar" style="width:'+acc5+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+        txt += '</div><hr>'
         document.getElementById("function_result").innerHTML = txt;
-/*
-        txt2 = '';
-        txt2 += '<p style="font-weight: bold";> Result : ' + result + '</h4><hr>'
-        document.getElementById("function_result").innerHTML = txt2;
-        */
       }
     };
     var parameter = 'seq=' + document.getElementById("seqNumber").value;
-    console.log(parameter);
     xhr.open("post", "/predict_ec", true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send(parameter);
+
   }
 
 /*
@@ -188,10 +204,9 @@
                     <div class="col-lg-6">
                       <div class="p-5">
                         <div class="text-center">
-                          <p class="mb-4"><br></p>
+                          <p class="mb-4"><br><br></p>
                           <h1 class="h4 text-gray-900 mb-2">Are you curious EC number?</h1>
-                         
-                          <p class="mb-4"><br></p>
+                          <p class="mb-4"><br><br></p>
                         </div>
 
                         <form action="" method="post" class="user">
@@ -200,10 +215,9 @@
                               onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
                               onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
                               class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
-                              placeholder="Enter sequence..." autocomplete="off"></textarea>
+                              placeholder="Enter sequence..." autocomplete="off"></textarea><br><br>
 
                             <script>
-
                               function IsAlphaNumeric(ee) {
                                 var keyCode = ee.keyCode == 0 ? ee.charCode : ee.keyCode;
                                 // 예외키 규정
@@ -216,37 +230,21 @@
                                 specialKeys.push(37); //Left
                                 specialKeys.push(39); //Right
                                 var ret = ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
-
                                 // error message
                                 if (!ret) { alert("only alphabet can be allowed to input."); }
                                 return ret;
                               }
-
                             </script>
 
                           </div>
-
                           <button class="btn btn-secondary" type="button" onclick="showPlz()">Show Result</button>
-
-                          
-
-
                         </form>
                         <hr>
                       </div>
                     </div>
-
                     <div class="col-lg-6" id="function_result" style="padding: 50px;">
-
-                      <div class="mb-1 small">Your Result</div>
-                      <div class="progress mb-4" id="progress_bar">
-                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
