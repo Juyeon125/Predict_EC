@@ -175,11 +175,10 @@ def login_page():
 
 @app.route('/mypage')
 def mypage():
-  content = mysql_dao.get_saveInfo_Select()
-  print(content)
 
   if 'username' in session:
     result = '%s' % escape(session['username'])
+    content = mysql_dao.get_saveInfo_Select(result)
     print(result,'main')
     return render_template('mypage.html', loginId = result, content=content)
 
@@ -187,9 +186,7 @@ def mypage():
     print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
-
-  print(result)
-  return redirect('/mypage', content=content)
+    return redirect('/')
 
 
 @app.route('/forgot_password_page')
@@ -211,40 +208,6 @@ def ecFunction_page():
     result = '%s' % escape(session['username'])
     print(result)
     return redirect('/ecFunction_page', content=content)
-
-@app.route("/searchEc", methods=['GET', 'POST'])
-def loginProc():
-    if request.method == "POST":
-
-      result1 = {'ec':'1.1.1.1', 'accuracy':'90.0'}
-      result2 = {'ec':'2.1.1.1', 'accuracy':'80.0'}
-      result3 = {'ec':'3.1.1.1', 'accuracy':'70.0'}
-      result4 = {'ec':'4.1.1.1', 'accuracy':'60.0'}
-      result5 = {'ec':'5.1.1.1', 'accuracy':'50.0'}
-
-      return result1
-
-@app.route("/save_Result", methods=['GET', 'POST'])
-def save_Result():
-  if request.method == "POST":
-    reqid = request.form["seq"]
-    inputreqid = request.form["input"]
-
-    json_data = json.loads(reqid)
-
-    print(inputreqid,'너누구냐')
-    print(json_data['accepted_name'])
-    print(json_data['ec_num'])
-    print(json_data['reaction'])
-
-
-    save_ecnum = json_data['ec_num']
-    save_accep = json_data['accepted_name']
-    save_reaction = json_data['reaction']
-
-    content = mysql_dao.get_dbInsert_saveInfo(inputreqid,save_ecnum, save_accep, save_reaction)
-
-  return reqid
 
 @app.route("/login_route", methods=['GET', 'POST'])
 def login_route():
@@ -286,12 +249,28 @@ cnn3 = CNN3()
 
 @app.route('/predict_ec', methods=['GET', 'POST'])
 def make_prediction1():
+  
+  
+
     if request.method == 'POST':
         input_value = request.form["seq"]
         test_data = input_value
 
         fourth_one, fouth_two =  predict_ec(test_data)
-        result_ec = {'ec1':fourth_one[0],'ec2':fourth_one[1],'ec3':fourth_one[2],'ec4':fourth_one[3],'ec5':fourth_one[4],'acc1':str(fouth_two[0]),'acc2':str(fouth_two[1]),'acc3':str(fouth_two[2]),'acc4':str(fouth_two[3]),'acc5':str(fouth_two[4])}
+        result_ec = {
+          'ec1':fourth_one[0],
+          'ec2':fourth_one[1],
+          'ec3':fourth_one[2],
+          'ec4':fourth_one[3],
+          'ec5':fourth_one[4],
+          'acc1':str(fouth_two[0]),
+          'acc2':str(fouth_two[1]),
+          'acc3':str(fouth_two[2]),
+          'acc4':str(fouth_two[3]),
+          'acc5':str(fouth_two[4])}
+        if 'username' in session:
+          mail = '%s' % escape(session['username'])
+          mysql_dao.get_dbInsert_history(mail,input_value,fourth_one[0])
         
         return result_ec
 
