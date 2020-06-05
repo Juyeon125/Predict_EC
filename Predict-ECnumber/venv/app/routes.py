@@ -273,14 +273,15 @@ def make_prediction1():
           mysql_dao.get_dbInsert_history(mail,input_value,fourth_one[0])
         
         return result_ec
-
+        
 @app.route("/contact_page", methods=['post', 'get'])
 def email_test():
+   
     if request.method == 'POST':
-        senders = request.form['email_sender']
-        
+        senders = request.form['name_sender']
+        senders2 = request.form['email_sender']
         receiver = request.form['email_receiver']
-        content = senders + request.form['email_content']
+        content = '보내는 사람:' + senders + '\n' + '답장 받을 이메일:' + senders2 + '\n' + '내용:' + request.form['email_content']
         receiver = receiver.split(',')
        
         for i in range(len(receiver)):
@@ -294,8 +295,10 @@ def email_test():
             return render_template('contact_page.html', content="Email is sent")
         else:
             return render_template('contact_page.html', content="Email is not sent")
+       
     else:
         return render_template('contact_page.html')
+
    
 def send_email(senders, receiver, content):
     msg = Message('SAMPLE 문의 메일', sender = senders, recipients = receiver)

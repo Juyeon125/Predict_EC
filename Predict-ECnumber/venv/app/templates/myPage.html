@@ -173,19 +173,19 @@ document.addEventListener('DOMContentLoaded', function(){
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Sequence</th>
-                      <th>EC number</th>
-                      <th>Accepted Name</th>
-                      <th>Reaction</th>
+                      <th width="25%">Sequence</th>
+                      <th width="25%">EC number</th>
+                      <th width="25%">Accepted Name</th>
+                      <th width="25%">Reaction</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for i in range(1,content[0]+1) %}
                     <tr>
-                      <td>{{ content[i].seq }}</td>
-                      <td>{{ content[i].ec_num }}</td>
-                      <td>{{ content[i].accepted_name }}</td>
-                      <td>{{ content[i].reaction }}</td>
+                      <td width="25%">{{ content[i].seq }}</td>
+                      <td width="25%">{{ content[i].ec_num }}</td>
+                      <td width="25%">{{ content[i].accepted_name }}</td>
+                      <td width="25%">{{ content[i].reaction }}</td>
                     </tr>
                     {% endfor %}
                   </tbody>
