@@ -38,7 +38,7 @@
         if(res.yesOrNo == 0)
         {
           txt = '';
-          txt += '<p style="font-weight: bold";> This is Non-Enzyme.  </p>'
+          txt += '<br><br><p style="font-weight: bold";> This is Non-Enzyme.  </p>'
           txt += '<p style="font-weight: bold";>Accuracy : ' + Math.round(res.non_acc * 100)/100 + '</p>'
           txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
           txt += '<div class="progress-bar" role="progressbar" style="width:'+res.non_acc+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
@@ -54,7 +54,12 @@
           var acc4 = Number(res.acc4);
           var acc5 = Number(res.acc5);
           txt = '';
-          txt += '<p style="font-weight: bold";> EC Number1 : ' + res.ec1 + ' Acuuracy :' + Math.round(res.acc1 * 100)/100 + '</p>'
+          txt += '<br><p style="font-weight: bold";> This is Enzyme.  </p>'
+          txt += '<p style="font-weight: bold";>Accuracy : ' + Math.round(res.on_acc * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+res.on_acc+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<br><p style="font-weight: bold";> EC Number1 : ' + res.ec1 + ' Acuuracy :' + Math.round(res.acc1 * 100)/100 + '</p>'
           txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
           txt += '<div class="progress-bar" role="progressbar" style="width:'+acc1+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
           txt += '</div><hr>'
