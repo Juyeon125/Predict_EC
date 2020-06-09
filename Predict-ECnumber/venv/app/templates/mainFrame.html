@@ -32,7 +32,9 @@
             text-shadow: black 0.2em 0.2em 0.2em;
             color: white
         }
+        
     </style>
+    
     <!-- Page Wrapper -->
     <div id="wrapper">
         {% extends "sidebar.html" %}
@@ -102,11 +104,16 @@
                       </ul>
                 </nav>
                 <div class="container">
+                    <br>
+                    <br>
                     <div class="jumbotron">
                         <h1 class="text-center">EC number Predict</h1>
                         <p class="text-center">This site predicts EC numbers by entering Protein Sequence.</p>
                         <p class="text-center"><a class="btn btn-primary btn-log" href="/search_page" role="button">Go Predict</a></p>
                     </div>
+                    <br>
+                    <hr>
+                    <br>
                     <div class="row">
                         <div class="col-md-4">
                             <h4>Introducing the website</h4>
@@ -126,7 +133,9 @@
                             <p><a class="btn btn-primary" href="/developer_page">See More</a></p>
                         </div>
                     </div>
+                    <br>
                     <hr>
+                    <br>
                 </div>
                 <footer style="background-color: #9cafd8; color: #ffffff">
                     <div class="container">
@@ -163,7 +172,7 @@
                         </div>
                 </footer>
                 <!-- End of Topbar -->
-                <div class="row">
+                <div class="row" >
                     <div class="modal" id="modal1" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -242,4 +251,5 @@
         <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
 </body>
 </html>
+
 {% endblock %}
