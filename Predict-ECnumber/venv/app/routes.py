@@ -98,15 +98,12 @@ def split_data(train): # dataset ->a (X_train)
 def index():
   if 'username' in session:
     result = '%s' % escape(session['username'])
-    print(result,'main')
     return render_template('mainFrame.html', loginId = result)
 
   else:
-    print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
 
-    print(result)
     return redirect('/')
 
 @app.route('/test')
@@ -117,60 +114,48 @@ def test():
 def search_page():
   if 'username' in session:
     result = '%s' % escape(session['username'])
-    print(result,'main')
     return render_template('search.html', loginId = result)
 
   else:
-    print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
 
-    print(result)
     return redirect('/search_page')
 
 @app.route('/intro_page')
 def intro_page():
   if 'username' in session:
     result = '%s' % escape(session['username'])
-    print(result,'main')
     return render_template('intro_page.html', loginId = result)
 
   else:
-    print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
 
-    print(result)
     return redirect('/intro_page')
 
 @app.route('/developer_page')
 def developer_page():
     if 'username' in session:
       result = '%s' % escape(session['username'])
-      print(result,'main')
       return render_template('developer_page.html', loginId = result)
 
     else:
-      print('없어서 추가함')
       session['username'] = ''
       result = '%s' % escape(session['username'])
 
-    print(result)
     return redirect('/developer_page')
  
 @app.route('/contact_page')
 def contact_page():
     if 'username' in session:
       result = '%s' % escape(session['username'])
-      print(result,'main')
       return render_template('contact_page.html', loginId = result)
 
     else:
-      print('없어서 추가함')
       session['username'] = ''
       result = '%s' % escape(session['username'])
 
-    print(result)
     return redirect('/contact_page')
 
 @app.route('/register_page')
@@ -187,11 +172,9 @@ def mypage():
   if 'username' in session:
     result = '%s' % escape(session['username'])
     content = mysql_dao.get_saveInfo_Select(result)
-    print(result,'main')
     return render_template('mypage.html', loginId = result, content=content)
 
   else:
-    print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
     return redirect('/')
@@ -207,14 +190,11 @@ def ecFunction_page():
 
   if 'username' in session:
     result = '%s' % escape(session['username'])
-    print(result,'main')
     return render_template('ec_function.html', loginId = result, content=content)
 
   else:
-    print('없어서 추가함')
     session['username'] = ''
     result = '%s' % escape(session['username'])
-    print(result)
     return redirect('/ecFunction_page', content=content)
 
 @app.route("/login_route", methods=['GET', 'POST'])
@@ -225,7 +205,6 @@ def login_route():
 
     content = mysql_dao.get_dbSelect_login(reqid,reqpw)
     if(content != 'fail'):
-      print(content["email"])
       result = content["email"]
       session['username'] = result
     else:
@@ -245,7 +224,6 @@ def register_route():
     reqpw = request.form["pw"]
     reqfi = request.form["first"]
     reqla = request.form["last"]
-    print(reqid,reqpw,reqfi,reqla)
     
     content = mysql_dao.get_dbInsert_register(reqid,reqpw,reqfi,reqla)
 
@@ -266,9 +244,10 @@ def make_prediction1():
 
         if len(fourth_one) > 2:
 
-          fourth_one, fouth_two =  predict_ec(test_data)
           result_ec = {
             'yesOrNo':1,
+            'non_acc':str(fouth_two[0]),
+            'on_acc':str(fouth_two[1]),
             'ec1':fourth_one[0],
             'ec2':fourth_one[1],
             'ec3':fourth_one[2],
@@ -287,7 +266,6 @@ def make_prediction1():
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[3],str(round(fouth_two[3])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[4],str(round(fouth_two[4])))
           
-
           return result_ec
         else:
           result_ec = {
@@ -311,8 +289,6 @@ def email_test():
         for i in range(len(receiver)):
             receiver[i] = receiver[i].strip()
            
-        print(receiver)
-       
         result = send_email(senders, receiver, content)
        
         if not result:

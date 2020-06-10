@@ -17,7 +17,6 @@ def get_dbSelect_login(email, pw):
             json_object = {
                 "email": row_data[0]
             }
-        print(json_object)
         return json_object
     return "fail"
 
