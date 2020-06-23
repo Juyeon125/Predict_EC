@@ -209,6 +209,16 @@ def login_route():
       result = "fail"
   return result
 
+  
+@app.route("/password_route", methods=['GET', 'POST'])
+def password_route():
+  if request.method == "POST":
+    reqid = request.form["id"]
+    reqname = request.form["name"]
+
+    content = mysql_dao.get_dbSelect_password(reqid,reqname)
+  return content
+
 @app.route("/logout")
 def logout_route():
   session.pop('username', None)
