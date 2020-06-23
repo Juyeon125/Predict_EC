@@ -64,7 +64,7 @@ def get_saveInfo_Select(mail):
 
     conn = connection.connection()
     try:
-        sql = "SELECT seq, ec_num, accepted_name, reaction, acc FROM test.search where mail =" + "'" + mail + "'"
+        sql = "SELECT his_num, seq, ec_num, accepted_name, reaction, acc FROM test.search where mail =" + "'" + mail + "'"
         cursor = conn.cursor()
         cursor.execute(sql)
         row_num = cursor.rowcount
@@ -75,10 +75,14 @@ def get_saveInfo_Select(mail):
         row = cursor.fetchall()
         object_list.append(row_num)
         for row_data in row:
-            json_object = {"seq":row_data[0],"ec_num": row_data[1], "accepted_name": row_data[2], "reaction": row_data[3], "acc": row_data[4]}
+            json_object = {"his_num":row_data[0],"seq":row_data[1],"ec_num": row_data[2], "accepted_name": row_data[3], "reaction": row_data[4], "acc": row_data[5]}
             object_list.append(json_object)
         return object_list
-    
+    else:
+        object_list = []
+        object_list.append(row_num)
+        print(object_list)
+        return object_list
             
 def get_dbInsert_history_1(mail, seq, ec_num, acc):
     conn = connection.connection()

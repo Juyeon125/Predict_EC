@@ -173,11 +173,10 @@ def mypage():
     result = '%s' % escape(session['username'])
     content = mysql_dao.get_saveInfo_Select(result)
     return render_template('mypage.html', loginId = result, content=content)
-
   else:
     session['username'] = ''
     result = '%s' % escape(session['username'])
-    return redirect('/')
+  return redirect('/')
 
 
 @app.route('/forgot_password_page')
@@ -191,11 +190,10 @@ def ecFunction_page():
   if 'username' in session:
     result = '%s' % escape(session['username'])
     return render_template('ec_function.html', loginId = result, content=content)
-
   else:
     session['username'] = ''
     result = '%s' % escape(session['username'])
-    return redirect('/ecFunction_page', content=content)
+  return redirect('/ecFunction_page')
 
 @app.route("/login_route", methods=['GET', 'POST'])
 def login_route():
