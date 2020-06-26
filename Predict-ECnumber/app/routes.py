@@ -8,25 +8,19 @@ import pandas as pd
 from ml.cnn1_test_pyfile import CNN1
 from ml.cnn2_test_pyfile import CNN2
 from ml.cnn3_test_pyfile import CNN3
-
 import flask
 import smtplib
 from flask_mail import Mail, Message
 
 app = Flask(__name__)      
 
-# from easydict import EasyDict
-import json
-
-
 input_path = "./config.json"
 
 with open(input_path, "r") as json_file:
   data = json.load(json_file)
 
-
-app.config['MAIL_SERVER']= data['mailServer'] #.
-app.config['MAIL_PORT'] = data['mailPort'] #.
+app.config['MAIL_SERVER']= data['mailServer']
+app.config['MAIL_PORT'] = data['mailPort']
 app.config['MAIL_USERNAME'] = data['usernameConfig']
 app.config['MAIL_PASSWORD'] = data['passwordConfig']
 app.config['MAIL_USE_SSL'] = True
@@ -84,7 +78,6 @@ def predict_ec(want_predict):
     else :
       yesOrNo_predict_list = [yesOrNo_predict[0][0].item(), yesOrNo_predict[0][1].item()]
       return yesOrNo, yesOrNo_predict_list
-     
 
 def split_data(train): # dataset ->a (X_train)
     list_test = []
@@ -109,11 +102,9 @@ def index():
   if 'username' in session:
     result = '%s' % escape(session['username'])
     return render_template('mainFrame.html', loginId = result)
-
   else:
     session['username'] = ''
     result = '%s' % escape(session['username'])
-
     return redirect('/')
 
 @app.route('/test')
@@ -125,11 +116,9 @@ def search_page():
   if 'username' in session:
     result = '%s' % escape(session['username'])
     return render_template('search.html', loginId = result)
-
   else:
     session['username'] = ''
     result = '%s' % escape(session['username'])
-
     return redirect('/search_page')
 
 @app.route('/intro_page')
@@ -137,11 +126,9 @@ def intro_page():
   if 'username' in session:
     result = '%s' % escape(session['username'])
     return render_template('intro_page.html', loginId = result)
-
   else:
     session['username'] = ''
     result = '%s' % escape(session['username'])
-
     return redirect('/intro_page')
 
 @app.route('/developer_page')
@@ -149,11 +136,9 @@ def developer_page():
     if 'username' in session:
       result = '%s' % escape(session['username'])
       return render_template('developer_page.html', loginId = result)
-
     else:
       session['username'] = ''
       result = '%s' % escape(session['username'])
-
     return redirect('/developer_page')
  
 @app.route('/contact_page')
@@ -161,11 +146,9 @@ def contact_page():
     if 'username' in session:
       result = '%s' % escape(session['username'])
       return render_template('contact_page.html', loginId = result)
-
     else:
       session['username'] = ''
       result = '%s' % escape(session['username'])
-
     return redirect('/contact_page')
 
 @app.route('/register_page')
@@ -178,7 +161,6 @@ def login_page():
 
 @app.route('/mypage')
 def mypage():
-
   if 'username' in session:
     result = '%s' % escape(session['username'])
     content = mysql_dao.get_saveInfo_Select(result)
@@ -188,7 +170,6 @@ def mypage():
     result = '%s' % escape(session['username'])
   return redirect('/')
 
-
 @app.route('/forgot_password_page')
 def forgot_password_page():
   return render_template('forgot_password_page.html')
@@ -196,7 +177,6 @@ def forgot_password_page():
 @app.route('/ecFunction_page')
 def ecFunction_page():
   content = mysql_dao.get_tableSelect()
-
   if 'username' in session:
     result = '%s' % escape(session['username'])
     return render_template('ec_function.html', loginId = result, content=content)
@@ -210,7 +190,6 @@ def login_route():
   if request.method == "POST":
     reqid = request.form["id"]
     reqpw = request.form["pw"]
-
     content = mysql_dao.get_dbSelect_login(reqid,reqpw)
     if(content != 'fail'):
       result = content["email"]
@@ -219,13 +198,11 @@ def login_route():
       result = "fail"
   return result
 
-  
 @app.route("/password_route", methods=['GET', 'POST'])
 def password_route():
   if request.method == "POST":
     reqid = request.form["id"]
     reqname = request.form["name"]
-
     content = mysql_dao.get_dbSelect_password(reqid,reqname)
   return content
 
@@ -234,7 +211,6 @@ def logout_route():
   session.pop('username', None)
   return redirect(request.args.get('url'))
   
-
 @app.route('/register_route', methods=['GET', 'POST'])
 def register_route(): 
   if request.method == "POST":
@@ -242,9 +218,7 @@ def register_route():
     reqpw = request.form["pw"]
     reqfi = request.form["first"]
     reqla = request.form["last"]
-    
     content = mysql_dao.get_dbInsert_register(reqid,reqpw,reqfi,reqla)
-
   return content
 
 cnn1 = CNN1()
@@ -261,7 +235,6 @@ def make_prediction1():
         fourth_one, fouth_two =  predict_ec(test_data)
 
         if len(fourth_one) > 2:
-
           result_ec = {
             'yesOrNo':1,
             'non_acc':str(fouth_two[0]),
@@ -278,12 +251,11 @@ def make_prediction1():
             'acc5':str(fouth_two[4])}
           if 'username' in session:
             mail = '%s' % escape(session['username'])
-            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0],2)))
+            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[1],str(round(fouth_two[1])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[2],str(round(fouth_two[2])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[3],str(round(fouth_two[3])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[4],str(round(fouth_two[4])))
-          
           return result_ec
         else:
           result_ec = {
@@ -291,12 +263,10 @@ def make_prediction1():
             'non_acc':fouth_two[0],
             'on_acc':fouth_two[1]
           }
-
           return result_ec
         
 @app.route("/contact_page", methods=['post', 'get'])
 def email_test():
-   
     if request.method == 'POST':
         senders = request.form['name_sender']
         senders2 = request.form['email_sender']
@@ -306,24 +276,19 @@ def email_test():
        
         for i in range(len(receiver)):
             receiver[i] = receiver[i].strip()
-           
         result = send_email(senders, receiver, content)
        
         if not result:
             return render_template('contact_page.html', content="Email is sent")
         else:
             return render_template('contact_page.html', content="Email is not sent")
-       
     else:
         return render_template('contact_page.html')
 
-   
 def send_email(senders, receiver, content):
     msg = Message('SAMPLE 문의 메일', sender = senders, recipients = receiver)
     msg.body = content
     mail.send(msg)
-
-
 
 if __name__ == '__main__':
   device = torch.device('cpu')

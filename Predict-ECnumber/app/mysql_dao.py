@@ -77,7 +77,6 @@ def get_dbInsert_register(email, pw, first, last):
             return "true"
 
 def get_saveInfo_Select(mail):
-
     conn = connection.connection()
     try:
         sql = "SELECT his_num, seq, ec_num, accepted_name, reaction, acc FROM test.search where mail =" + "'" + mail + "'"
@@ -113,7 +112,6 @@ def get_dbInsert_history_1(mail, seq, ec_num, acc):
             for row_data in row:
                 accepted_name = row_data[1]
                 reaction = row_data[2]
-
     finally:
         cursor = conn.cursor()
         sql = "INSERT INTO search (mail, seq, ec_num, accepted_name, reaction, acc) VALUES (%s, %s, %s, %s, %s, %s);"
@@ -122,7 +120,6 @@ def get_dbInsert_history_1(mail, seq, ec_num, acc):
         conn.commit()
         cursor.close()
         return "true"
-
     if row_num > 0:
         object_list = []
         row = cursor.fetchall()
