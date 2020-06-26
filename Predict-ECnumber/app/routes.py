@@ -10,15 +10,25 @@ from ml.cnn2_test_pyfile import CNN2
 from ml.cnn3_test_pyfile import CNN3
 
 import flask
-from flask_mail import Mail, Message
 import smtplib
+from flask_mail import Mail, Message
 
 app = Flask(__name__)      
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = "minsu960908@gmail.com" 
-app.config['MAIL_PASSWORD'] = 'qwer4231' 
+# from easydict import EasyDict
+import json
+
+
+input_path = "./config.json"
+
+with open(input_path, "r") as json_file:
+  data = json.load(json_file)
+
+
+app.config['MAIL_SERVER']= data['mailServer'] #.
+app.config['MAIL_PORT'] = data['mailPort'] #.
+app.config['MAIL_USERNAME'] = data['usernameConfig']
+app.config['MAIL_PASSWORD'] = data['passwordConfig']
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USE_TLS'] = False
 mail = Mail(app)   
@@ -268,7 +278,7 @@ def make_prediction1():
             'acc5':str(fouth_two[4])}
           if 'username' in session:
             mail = '%s' % escape(session['username'])
-            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0])))
+            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0],2)))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[1],str(round(fouth_two[1])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[2],str(round(fouth_two[2])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[3],str(round(fouth_two[3])))
@@ -312,6 +322,8 @@ def send_email(senders, receiver, content):
     msg = Message('SAMPLE 문의 메일', sender = senders, recipients = receiver)
     msg.body = content
     mail.send(msg)
+
+
 
 if __name__ == '__main__':
   device = torch.device('cpu')
