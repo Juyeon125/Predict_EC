@@ -268,7 +268,7 @@ def make_prediction1():
             'acc5':str(fouth_two[4])}
           if 'username' in session:
             mail = '%s' % escape(session['username'])
-            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0],2)))
+            mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[0],str(round(fouth_two[0])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[1],str(round(fouth_two[1])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[2],str(round(fouth_two[2])))
             mysql_dao.get_dbInsert_history_1(mail,input_value,fourth_one[3],str(round(fouth_two[3])))
