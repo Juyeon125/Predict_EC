@@ -1,0 +1,10 @@
+{
+    "usernameConfig": "minsu960908@gmail.com",
+    "passwordConfig": "alstn12.",
+    "mailServer":"smtp.gmail.com",
+    "mailPort": "465",
+    "dbHost":"127.0.0.1",
+    "dbUser":"root",
+    "dbPassword":"7777",
+    "db":"test"
+}
