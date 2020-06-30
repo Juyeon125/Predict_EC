@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>All EC</title>
+
+  <!-- Custom fonts for this template-->
+  <link
+    href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css')}}"
+    rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css')}}"
+    rel="stylesheet" type="text/css">
+
+
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  function showPlz() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+
+        var result = this.responseText;
+        const res = JSON.parse(result);
+        if(res.yesOrNo == 0)
+        {
+          txt = '';
+          txt += '<br><br><p style="font-weight: bold";> This is Non-Enzyme.  </p>'
+          txt += '<p style="font-weight: bold";>Accuracy : ' + Math.round(res.non_acc * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+res.non_acc+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          document.getElementById("function_result").innerHTML = txt;
+        }
+        
+        else{
+          const res = JSON.parse(result);
+          var acc1 = Number(res.acc1);
+          var acc2 = Number(res.acc2);
+          var acc3 = Number(res.acc3);
+          var acc4 = Number(res.acc4);
+          var acc5 = Number(res.acc5);
+          txt = '';
+          txt += '<br><p style="font-weight: bold";> This is Enzyme.  </p>'
+          txt += '<p style="font-weight: bold";>Accuracy : ' + Math.round(res.on_acc * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+res.on_acc+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<br><p style="font-weight: bold";> EC Number1 : ' + res.ec1 + ' Acuuracy :' + Math.round(res.acc1 * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+acc1+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<p> EC Number2 : ' + res.ec2 + ' Acuuracy :' + Math.round(res.acc2 * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+acc2+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<p> EC Number3 : ' + res.ec3 + ' Acuuracy :' + Math.round(res.acc3 * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+acc3+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<p> EC Number4 : ' + res.ec4 + ' Acuuracy :' + Math.round(res.acc4 * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+acc4+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          txt += '<p> EC Number5 : ' + res.ec5 + ' Acuuracy :' + Math.round(res.acc5 * 100)/100 + '</p>'
+          txt += '<div class="progress progress-sm mb-2" id="progress_bar">'
+          txt += '<div class="progress-bar" role="progressbar" style="width:'+acc5+'%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+          txt += '</div><hr>'
+          document.getElementById("function_result").innerHTML = txt;
+
+        }
+      }
+    };
+    var parameter = 'seq=' + document.getElementById("seqNumber").value;
+    xhr.open("post", "/predict_ec", true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send(parameter);
+
+  }
+
+/*
+  function search_ec() {
+    var xhttp = new XMLHttpRequest();
+    //3.4.23.36
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var ecNumber = this.responseText;
+
+        if (ecNumber == "fail") {
+          alert("다시");
+        }
+
+        else {
+          const obj = JSON.parse(ecNumber);
+          txt = '';
+          txt += '<h4 style="font-weight: bold";> EC number : ' + obj.ec + '</h4><hr>'
+          document.getElementById("function_result").innerHTML = txt;
+        }
+      }
+    };
+    var parameter = 'seq=' + document.getElementById("seqNumber").value;
+    console.log(parameter);
+    xhttp.open("post", "/searchEc", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(parameter);
+
+  }
+  */
+</script>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    {% extends "sidebar.html" %}
+    {% block content %}
+    
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <div class="input-group-append">
+                <h1>Search EC number</h1>
+              </div>
+            </div>
+          </form>
+
+
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Alerts -->
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            {% if(loginId==''): %}
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  style="font-weight: bold; font-size: 20px;">LOGIN</span>
+
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="login_page">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Login
+                </a>
+                <a class="dropdown-item" href="forgot_password_page">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Forgot Password
+                </a>
+                <a class="dropdown-item" href="register_page">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Register
+                </a>
+              </div>
+            </li>
+            {% else: %}
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  style="font-weight: bold; font-size: 20px;">{{ loginId }}</span>
+
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="mypage">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Mypage
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Outer Row -->
+        <div class="container">
+          <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+              <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                  <!-- Nested Row within Card Body -->
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="p-5">
+                        <div class="text-center">
+                          <p class="mb-4"><br><br></p>
+                          <h1 class="h4 text-gray-900 mb-2">Are you curious EC number?</h1>
+                          <p class="mb-4"><br></p>
+                        </div>
+
+                        <form action="" method="post" class="user">
+                          <div class="form-group">
+                            <textarea style="text-transform: uppercase;"
+                              onKeyPress="javascript:return IsAlphaNumeric(event);" type="text"
+                              onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');"
+                              class="form-control form-control-user" id="seqNumber" aria-describedby="seqHelp"
+                              placeholder="Enter sequence..." autocomplete="off"></textarea><br>
+
+                            <script>
+                              function IsAlphaNumeric(ee) {
+                                var keyCode = ee.keyCode == 0 ? ee.charCode : ee.keyCode;
+                                // 예외키 규정
+                                var specialKeys = new Array();
+                                specialKeys.push(8); //Backspace
+                                specialKeys.push(9); //Tabs
+                                specialKeys.push(46); //Delete
+                                specialKeys.push(36); //Home
+                                specialKeys.push(35); //End   
+                                specialKeys.push(37); //Left
+                                specialKeys.push(39); //Right
+                                var ret = ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(ee.keyCode) != -1 && ee.charCode != ee.keyCode));
+                                // error message
+                                if (!ret) { alert("only alphabet can be allowed to input."); }
+                                return ret;
+                              }
+                            </script>
+
+                          </div>
+                          <button class="btn btn-secondary" type="button" onclick="showPlz()">Show Result</button>
+                        </form>
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="col-lg-6" id="function_result" style="padding: 50px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout?url=/search_page">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+
+
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script
+      src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins
+      <script
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js')}}"></script>
+      -->
+    <!-- Page level custom scripts 
+      <script
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js')}}"></script>
+      <script
+        src="{{url_for('static', filename='startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js')}}"></script>
+      -->
+</body>
+
+</html>
+
+{% endblock %}
