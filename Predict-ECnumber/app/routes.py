@@ -107,10 +107,6 @@ def index():
     result = '%s' % escape(session['username'])
     return redirect('/')
 
-@app.route('/test')
-def test():
-  return render_template('test.html')
-
 @app.route('/search_page')
 def search_page():
   if 'username' in session:

@@ -6,5 +6,5 @@
     "dbHost":"127.0.0.1",
     "dbUser":"root",
     "dbPassword":"7777",
-    "db":"test"
+    "db":"multi_pred"
 }
